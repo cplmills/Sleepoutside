@@ -1,16 +1,24 @@
-import { setLocalStorage } from "./utils.mjs";
-import { findProductById } from "./productData.mjs";
+import { setLocalStorage } from "/js/utils.mjs";
+import { findProductById } from "/js/productData.mjs";
 
 function addProductToCart(product) {
-  setLocalStorage("so-cart", product);
+  if (product) {
+    setLocalStorage("so-cart", product);
+  }
+  
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
-  const product = await findProductById(e.target.dataset.id);
+  if (e.target && e.target.dataset && e.target.dataset.id) {
+    const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
+  }
+  
 }
 
 // add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+const addToCartButton = document.getElementById("addToCart");
+if (addToCartButton){
+  addToCartButton.addEventListener("click", addToCartHandler);
+}
+
