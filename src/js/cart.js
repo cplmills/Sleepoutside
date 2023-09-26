@@ -2,8 +2,14 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  if (localStorage.getItem("so-cart") === null){  // if there are no items in the cart
+    const emptyCartMessage = document.createElement("h3");
+    emptyCartMessage.innerHTML = "You Have No Items In Your Cart";
+    document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
+  }else{
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  }
 }
 
 function cartItemTemplate(item) {
