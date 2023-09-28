@@ -1,3 +1,4 @@
+import { doc } from "prettier";
 import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
@@ -25,4 +26,27 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function showTotalContents(items) {
+  if (items.length != 0) {
+    document.querySelector(".cart-footer.hide").style.display = "unset";
+
+    const itemPricesList = items.map((item) => item.ListPrice);
+
+    const priceTotal = itemPricesList.reduce(
+      (item, currentTotal) => item + currentTotal,
+      0
+    );
+
+    document
+      .querySelector(".cart-total")
+      .insertAdjacentHTML("beforeend", `$${priceTotal}`);
+  }
+}
+
+function checkCartItems() {
+  const cartItems = getLocalStorage("so-cart");
+  showTotalContents(cartItems);
+}
+
 renderCartContents();
+checkCartItems();
