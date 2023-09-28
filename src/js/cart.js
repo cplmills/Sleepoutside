@@ -51,7 +51,11 @@ function showTotalContents(items) {
 
 function checkCartItems() {
   const cartItems = getLocalStorage("so-cart");
-  showTotalContents(cartItems);
+  console.log(cartItems);
+  if (cartItems != null){
+    showTotalContents(cartItems);
+  }
+  
 }
 
 renderCartContents();
