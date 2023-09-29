@@ -24,5 +24,31 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
+// Add event delegation to handle remove button clicks
+document.querySelector(".product-list").addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-button")) {
+    const productIdToRemove = e.target.dataset.id;
+    removeCartItem(productIdToRemove);
+  }
+});
+
+function removeCartItem(productId) {
+  const cartItems = getLocalStorage("so-cart");
+  // Find the index of the item with the matching ID
+  const indexToRemove = cartItems.findIndex((item) => item.id === productId);
+
+  if (indexToRemove !== -1) {
+    // Remove the item at the specified index
+    cartItems.splice(indexToRemove, 1);
+  
+  
+// Update the cart in Local Storage
+setLocalStorage("so-cart", cartItems);
+
+// Re-render the cart contents
+renderCartContents();
+}
+}
+  
 
 renderCartContents();
