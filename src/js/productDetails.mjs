@@ -17,6 +17,7 @@ async function addToCartHandler(e) {
     const product = await findProductById(e.target.dataset.id);
     console.log(product);
     addProductToCart(product);
+    animateLogo();
 }
 
 function addProductToCart(product) {
@@ -76,5 +77,22 @@ function renderProductDetails(myProductDetails){
     
     let mainTag = document.getElementsByTagName("main")[0];
     mainTag.appendChild(newSection);
+    
+}
+
+function animateLogo() {
+    let cartLogo = document.querySelector(".cart-logo");
+    cartLogo.setAttribute("class", "logo-spinner");
+
+    let btnAdd = document.querySelector("#addToCart");
+    console.log(btnAdd);
+    btnAdd.innerHTML = "Item Added to Cart";
+
+    setTimeout(function()
+    {
+        cartLogo.setAttribute("class", "cart-logo");
+        btnAdd.innerHTML = "Add to Cart";
+
+    }, 2000);
     
 }
