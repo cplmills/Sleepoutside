@@ -1,14 +1,22 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // Attach click event listeners to remove buttons
+  const removeButtons = document.querySelectorAll(".remove-button");
+  removeButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      removeCartItem(index);
+    });
+  });
 }
 
-function cartItemTemplate(item) {
+function cartItemTemplate(item, index) {
   const newItem = `<li class="cart-card divider">
-  <span class="remove-button" data-id="${item.id}">&#10006;</span>
+  <button class="remove-button" data-index="${index}" data-id="${item.id}">&#10006;</button>
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -21,37 +29,25 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  
 </li>`;
 
   return newItem;
 }
-function attachRemoveListener(cartItem, productId) {
-  const removeButton = cartItem.querySelector(".remove-button");
-  removeButton.addEventListener("click", () => {
-    // Retrieve the cart from local storage
-    const cartItems = getLocalStorage("so-cart");
 
-    // Find the index of the item to be removed based on its productId
-    const indexToRemove = cartItems.findIndex((item) => item.id === productId);
+function removeCartItem(index) {
+  // Retrieve the cart from local storage
+  const cartItems = getLocalStorage("so-cart");
 
-    if (indexToRemove !== -1) {
-      // Remove the item from the cart
-      cartItems.splice(indexToRemove, 1);
+  // Remove the item from the cart based on the provided index
+  if (index >= 0 && index < cartItems.length) {
+    cartItems.splice(index, 1);
 
-      // Update the cart in local storage
-      setLocalStorage("so-cart", cartItems);
+    // Update the cart in local storage
+    setLocalStorage("so-cart", cartItems);
 
-      // Re-render the cart list
-      renderCartContents();
-    }
-  });
+    // Re-render the cart list
+    renderCartContents();
+  }
 }
+
 renderCartContents();
-
-
-
-
-
-  
-

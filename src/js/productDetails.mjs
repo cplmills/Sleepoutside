@@ -63,6 +63,7 @@ function renderProductDetails(myProductDetails){
     newButton.id = "addToCart";
     newButton.setAttribute("data-id", myProductDetails.Id);
     newButton.innerText = "Add To Cart";
+    newButton.addEventListener("click", addToCartHandler);
     
     newSection.append(newH3);
     newSection.append(newH2);
