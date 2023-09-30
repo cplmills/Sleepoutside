@@ -8,6 +8,7 @@ function renderCartContents() {
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
+  <span class="remove-button" data-id="${item.id}">&#10006;</span>
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -20,35 +21,37 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  
 </li>`;
 
   return newItem;
 }
-// Add event delegation to handle remove button clicks
-document.querySelector(".product-list").addEventListener("click", (e) => {
-  if (e.target.classList.contains("remove-button")) {
-    const productIdToRemove = e.target.dataset.id;
-    removeCartItem(productIdToRemove);
-  }
-});
+function attachRemoveListener(cartItem, productId) {
+  const removeButton = cartItem.querySelector(".remove-button");
+  removeButton.addEventListener("click", () => {
+    // Retrieve the cart from local storage
+    const cartItems = getLocalStorage("so-cart");
 
-function removeCartItem(productId) {
-  const cartItems = getLocalStorage("so-cart");
-  // Find the index of the item with the matching ID
-  const indexToRemove = cartItems.findIndex((item) => item.id === productId);
+    // Find the index of the item to be removed based on its productId
+    const indexToRemove = cartItems.findIndex((item) => item.id === productId);
 
-  if (indexToRemove !== -1) {
-    // Remove the item at the specified index
-    cartItems.splice(indexToRemove, 1);
-  
-  
-// Update the cart in Local Storage
-setLocalStorage("so-cart", cartItems);
+    if (indexToRemove !== -1) {
+      // Remove the item from the cart
+      cartItems.splice(indexToRemove, 1);
 
-// Re-render the cart contents
-renderCartContents();
+      // Update the cart in local storage
+      setLocalStorage("so-cart", cartItems);
+
+      // Re-render the cart list
+      renderCartContents();
+    }
+  });
 }
-}
+renderCartContents();
+
+
+
+
+
   
 
-renderCartContents();
