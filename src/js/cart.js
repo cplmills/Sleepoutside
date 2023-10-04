@@ -1,20 +1,34 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { doc } from "prettier";
+import { getLocalStorage , setLocalStorage} from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-
-  // Attach click event listeners to remove buttons
-  const removeButtons = document.querySelectorAll(".remove-button");
+  if (localStorage.getItem("so-cart") === null){  // if there are no items in the cart
+    const emptyCartMessage = document.createElement("h3");
+    emptyCartMessage.innerHTML = "You Have No Items In Your Cart";
+    document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
+  }else{
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+    const removeButtons = document.querySelectorAll(".remove-button");
   removeButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
       removeCartItem(index);
     });
   });
+    // document.querySelector(".remove-button").addEventListener('click', removeCartItem)
+  }
 }
 
 function cartItemTemplate(item, index) {
+  //calculate the discount based on the item price
+  let discountPercentage = 0;
+  if (item.ListPrice > 300) {
+    discountPercentage = 0.05;
+  } else if (item.ListPrice >150) {
+    discountPercentage = 0.03;
+  }
+  const discountPrice = item.ListPrice * discountPercentage;
   const newItem = `<li class="cart-card divider">
   <button class="remove-button" data-index="${index}" data-id="${item.id}">&#10006;</button>
   <a href="#" class="cart-card__image">
@@ -50,4 +64,31 @@ function removeCartItem(index) {
   }
 }
 
+function showTotalContents(items) {
+  if (items.length != 0) {
+    document.querySelector(".cart-footer.hide").style.display = "unset";
+
+    const itemPricesList = items.map((item) => item.ListPrice);
+
+    const priceTotal = itemPricesList.reduce(
+      (item, currentTotal) => item + currentTotal,
+      0
+    );
+
+    document
+      .querySelector(".cart-total")
+      .insertAdjacentHTML("beforeend", `$${priceTotal}`);
+  }
+}
+
+function checkCartItems() {
+  const cartItems = getLocalStorage("so-cart");
+  console.log(cartItems);
+  if (cartItems != null){
+    showTotalContents(cartItems);
+  }
+  
+}
+
 renderCartContents();
+checkCartItems();

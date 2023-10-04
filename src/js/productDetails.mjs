@@ -47,6 +47,20 @@ function renderProductDetails(myProductDetails) {
   newPrice.className = "product-card__price";
   newPrice.innerHTML = myProductDetails.ListPrice;
 
+  //Calculate and display discount price
+  
+  let discountPrice = myProductDetails.ListPrice - myProductDetails.FinalPrice;
+  let discountElement = document.createElement("p");
+  discountElement.className = "product__discount";
+  discountElement.innerHTML = `Save $${discountPrice}`;
+  // Calculate and display discount percentage
+  let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
+  let discountPercentageElement = document.createElement("p");
+  discountPercentageElement.className = "product__discount-percentage";
+  discountPercentageElement.innerHTML = `Discount: ${discountPercentage.toFixed(
+    2
+  )}%`;
+
   let newColor = document.createElement("p");
   newColor.className = "product__color";
   newColor.innerHTML = myProductDetails.Colors[0].ColorName;
@@ -68,6 +82,8 @@ function renderProductDetails(myProductDetails) {
   newSection.append(newH2);
   newSection.append(newImg);
   newSection.append(newPrice);
+  newSection.append(discountElement);
+  newSection.append(discountPercentageElement);
   newSection.append(newColor);
   newSection.append(newDescription);
 
