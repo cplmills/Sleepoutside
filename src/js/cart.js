@@ -1,13 +1,13 @@
-import { doc } from "prettier";
 import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  if (localStorage.getItem("so-cart") === null){  // if there are no items in the cart
+  if (localStorage.getItem("so-cart") === null) {
+    // if there are no items in the cart
     const emptyCartMessage = document.createElement("h3");
     emptyCartMessage.innerHTML = "You Have No Items In Your Cart";
     document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
-  }else{
+  } else {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
   }
@@ -51,11 +51,9 @@ function showTotalContents(items) {
 
 function checkCartItems() {
   const cartItems = getLocalStorage("so-cart");
-  console.log(cartItems);
-  if (cartItems != null){
+  if (cartItems != null) {
     showTotalContents(cartItems);
   }
-  
 }
 
 renderCartContents();
