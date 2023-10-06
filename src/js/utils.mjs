@@ -28,3 +28,12 @@ export function getParam(parameter){
   const product = urlParams.get(parameter);
   return product;
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const HTMLselector = document.querySelector(parentElement);
+  let template = list.map(templateFn);
+  HTMLselector.insertAdjacentHTML(position, template.join(""));
+}
