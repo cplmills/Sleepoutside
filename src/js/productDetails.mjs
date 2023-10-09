@@ -2,6 +2,7 @@ import { findProductById } from "./productData.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default async function productDetails(productId) {
+  try {
   const myProductDetails = await findProductById(productId);
   renderProductDetails(myProductDetails);
 
@@ -9,6 +10,11 @@ export default async function productDetails(productId) {
   document
     .getElementById("addToCart")
     .addEventListener("click", addToCartHandler);
+  } catch (err) {
+    if (err instanceof TypeError) {
+      alert('Product not found')
+    }
+  }
 }
 
 async function addToCartHandler(e) {
@@ -16,6 +22,7 @@ async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   console.log(product);
   addProductToCart(product);
+  animateLogo();
 }
 
 function addProductToCart(product) {
@@ -49,17 +56,28 @@ function renderProductDetails(myProductDetails) {
 
   //Calculate and display discount price
   
-  let discountPrice = myProductDetails.ListPrice - myProductDetails.FinalPrice;
+  // let discountPrice = myProductDetails.ListPrice - myProductDetails.FinalPrice;
+  console.log(myProductDetails.ListPrice);
+  let discountPercentage;
+  if (myProductDetails.ListPrice > 300) {
+    discountPercentage = 0.05;
+  } else if (myProductDetails.ListPrice >150) {
+    console.log('123');
+    discountPercentage = 0.03;
+  }
+  const discountPrice = myProductDetails.ListPrice * discountPercentage;
+  console.log(discountPrice);
   let discountElement = document.createElement("p");
   discountElement.className = "product__discount";
   discountElement.innerHTML = `Save $${discountPrice}`;
   // Calculate and display discount percentage
-  let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
+
+  // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
   let discountPercentageElement = document.createElement("p");
   discountPercentageElement.className = "product__discount-percentage";
   discountPercentageElement.innerHTML = `Discount: ${discountPercentage.toFixed(
     2
-  )}%`;
+  )*100}%`;
 
   let newColor = document.createElement("p");
   newColor.className = "product__color";
@@ -92,4 +110,20 @@ function renderProductDetails(myProductDetails) {
 
   let mainTag = document.querySelector("main"); 
   mainTag.appendChild(newSection);
+}
+function animateLogo() {
+  let cartLogo = document.querySelector(".cart-logo");
+  cartLogo.setAttribute("class", "logo-spinner");
+
+  let btnAdd = document.querySelector("#addToCart");
+  console.log(btnAdd);
+  btnAdd.innerHTML = "Item Added to Cart";
+
+  setTimeout(function()
+  {
+      cartLogo.setAttribute("class", "cart-logo");
+      btnAdd.innerHTML = "Add to Cart";
+
+  }, 2000);
+  
 }

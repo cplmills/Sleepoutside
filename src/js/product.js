@@ -8,7 +8,13 @@ import productDetails from "./productDetails.mjs";
 
 const productId = getParam("product");
 console.log(productId);
-await productDetails(productId);
+// await productDetails(productId);
+init(productId);
+
+async function init(productId){
+  await productDetails(productId)
+
+}
 // const data = await findProductById(productId);
 // console.log(data);
 
