@@ -22,12 +22,13 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function getParam(param) {
+export function getParam(parameter){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(param);
+  const product = urlParams.get(parameter);
   return product;
-} 
+}
+
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true) {
   if (clear) {
     parentElement.innerHTML = "";
@@ -35,4 +36,4 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   const HTMLselector = document.querySelector(parentElement);
   let template = list.map(templateFn);
   HTMLselector.insertAdjacentHTML(position, template.join(""));
-}          
+}
