@@ -106,4 +106,4 @@ function checkCartItems() {
 
 renderCartContents();
 checkCartItems();
-checkCartItems();
+
