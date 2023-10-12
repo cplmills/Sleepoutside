@@ -8,7 +8,7 @@ function renderCartContents() {
     emptyCartMessage.innerHTML = "You Have No Items In Your Cart";
     document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
   }else{
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     const removeButtons = document.querySelectorAll(".remove-button");
   removeButtons.forEach((button, index) => {
@@ -16,7 +16,8 @@ function renderCartContents() {
       removeCartItem(index);
     });
   });
-    // document.querySelector(".remove-button").addEventListener('click', removeCartItem)
+    // Update the total price
+    showTotalContents(cartItems);
   }
 }
 
@@ -63,6 +64,7 @@ function removeCartItem(index) {
 
     // Re-render the cart list
     renderCartContents();
+    checkCartItems();
   }
 }
 
@@ -79,19 +81,22 @@ function showTotalContents(items) {
   item.discountedPrice = discountedPrice;
   })  
   console.log(items);
-  if (items.length != 0) {
+  if (items.length !== 0) {
     document.querySelector(".cart-footer.hide").style.display = "unset";
 
     const itemPricesList = items.map((item) => item.discountedPrice);
 
     const priceTotal = itemPricesList.reduce(
-      (item, currentTotal) => item + currentTotal,
-      0
-    );
-
-    document
-      .querySelector(".cart-total")
-      .insertAdjacentHTML("beforeend", `$${priceTotal.toFixed(2)}`);
+      (item, currentTotal) => item + currentTotal, 0);
+    
+    // Clear the old total and insert the updated total
+    const totalElement = document.querySelector(".cart-total");
+    totalElement.innerHTML = `Total: $${priceTotal.toFixed(2)}`;
+  } else {
+    // If there are no items, clear the total
+    const totalElement = document.querySelector(".cart-total");
+    totalElement.innerHTML = "";
+    
   }
 }
 
