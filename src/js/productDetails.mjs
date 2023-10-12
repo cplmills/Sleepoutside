@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 export default async function productDetails(productId) {
     try {
@@ -104,3 +105,5 @@ function animateLogo() {
     }, 2000);
     
 }
+
+loadHeaderFooter();
