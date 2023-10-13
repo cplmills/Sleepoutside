@@ -124,6 +124,12 @@ button {
   }
 }
 
+#cart-item-count {
+  border-radius: 50%;
+  color: black;
+  background-color: #f0a868;
+  width:2em;
+}
 /* End cart icon styles */
 
 .mission {
