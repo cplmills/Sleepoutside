@@ -11,9 +11,8 @@ console.log(productId);
 // await productDetails(productId);
 init(productId);
 
-async function init(productId){
-  await productDetails(productId)
-
+async function init(productId) {
+  await productDetails(productId);
 }
 // const data = await findProductById(productId);
 // console.log(data);
