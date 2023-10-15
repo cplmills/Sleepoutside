@@ -1,3 +1,4 @@
+import { loadHeaderFooter } from "./utils.mjs";
 import { doc } from "prettier";
 import { getLocalStorage , setLocalStorage} from "./utils.mjs";
 
@@ -111,4 +112,4 @@ function checkCartItems() {
 
 renderCartContents();
 checkCartItems();
-
+loadHeaderFooter();

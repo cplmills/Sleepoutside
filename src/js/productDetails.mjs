@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 export default async function productDetails(productId) {
   try {
@@ -111,6 +112,7 @@ function renderProductDetails(myProductDetails) {
   let mainTag = document.querySelector("main"); 
   mainTag.appendChild(newSection);
 }
+
 function animateLogo() {
   let cartLogo = document.querySelector(".cart-logo");
   cartLogo.setAttribute("class", "logo-spinner");
@@ -125,5 +127,7 @@ function animateLogo() {
       btnAdd.innerHTML = "Add to Cart";
 
   }, 2000);
-  
 }
+
+loadHeaderFooter();
+
