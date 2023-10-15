@@ -7,7 +7,6 @@ import productDetails from "./productDetails.mjs";
 // const dataSource = new ProductData("tents");
 
 const productId = getParam("product");
-console.log(productId);
 // await productDetails(productId);
 init(productId);
 
@@ -23,6 +22,7 @@ function addProductToCart(product) {
   cartData.push(product);
   setLocalStorage("so-cart", cartData);
 }
+
 // add to cart button event handler
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
