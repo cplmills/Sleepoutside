@@ -29,7 +29,6 @@ function addProductToCart(product) {
   cartData.push(product);
   setLocalStorage("so-cart", cartData);
   showCartCount();
-
 }
 
 function renderProductDetails(myProductDetails) {

@@ -1,5 +1,3 @@
-
-
 function convertToJson(res) {
   if (res.ok) {
     return res.json();

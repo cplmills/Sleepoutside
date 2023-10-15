@@ -3,10 +3,10 @@ import { getLocalStorage , setLocalStorage} from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  if (localStorage.getItem("so-cart") === null){  // if there are no items in the cart
-    const emptyCartMessage = document.createElement("h3");
-    emptyCartMessage.innerHTML = "You Have No Items In Your Cart";
-    document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
+  if (localStorage.getItem("so-cart") === null  || cartItems.length === 0){  // if there are no items in the cart
+    const emptyCartMessage = document.querySelector(".cart-heading");
+    emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
+    // document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
   }else{
     const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
