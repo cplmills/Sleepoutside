@@ -69,7 +69,7 @@ function renderProductDetails(myProductDetails) {
   console.log(discountPrice);
   let discountElement = document.createElement("p");
   discountElement.className = "product__discount";
-  discountElement.innerHTML = `Save $${discountPrice}`;
+  discountElement.innerHTML = `Save $${discountPrice.toFixed(2)}`;
   // Calculate and display discount percentage
 
   // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
