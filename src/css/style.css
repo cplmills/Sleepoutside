@@ -161,6 +161,12 @@ button {
   margin: 0.5em 0;
 }
 
+.discount-indicator {
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
