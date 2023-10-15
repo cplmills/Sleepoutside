@@ -37,3 +37,4 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   let template = list.map(templateFn);
   HTMLselector.insertAdjacentHTML(position, template.join(""));
 }
+

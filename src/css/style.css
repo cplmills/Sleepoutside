@@ -124,11 +124,19 @@ button {
   }
 }
 
-#cart-item-count {
+.cart-item-count {
   border-radius: 50%;
+  position: absolute;
+  left: -5px;
+  top: 1px;
+  display: block;
   color: black;
   background-color: #f0a868;
-  width:2em;
+  width:1em;
+  height: 1em;
+  text-align: center;
+  line-height: 1em;  
+  font-weight: bolder;
 }
 /* End cart icon styles */
 

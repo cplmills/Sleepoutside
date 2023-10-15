@@ -97,11 +97,19 @@ function showTotalContents(items) {
 
 function checkCartItems() {
   const cartItems = getLocalStorage("so-cart");
-  console.log(cartItems);
   if (cartItems != null){
     showTotalContents(cartItems);
   }
   
+}
+
+export function showCartCount(){
+  let badge = document.querySelector(".cart");
+  const cartItems = getLocalStorage("so-cart");
+  let cartCount = cartItems.length;
+  console.log(cartCount + "items in cart");
+  
+  badge.insertAdjacentHTML("afterbegin", `<div id="badge" class="cart-item-count">${cartCount}</div>`);
 }
 
 renderCartContents();
