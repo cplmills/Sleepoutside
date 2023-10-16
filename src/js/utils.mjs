@@ -76,3 +76,5 @@ export function showCartCount(){
   let badge = document.querySelector(".cart-item-count");
   badge.innerHTML = getLocalStorage("so-cart").length;
 }
+
+

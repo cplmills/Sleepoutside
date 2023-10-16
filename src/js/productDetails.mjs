@@ -47,8 +47,9 @@ function renderProductDetails(myProductDetails) {
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
-  newImg.src = myProductDetails.Image;
-  newImg.setAttribute("alt", myProductDetails.NameWithoutBrand); 
+  newImg.src = fileExists(myProductDetails.Image);
+  newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
+
 
   let newPrice = document.createElement("p");
   newPrice.className = "product-card__price";

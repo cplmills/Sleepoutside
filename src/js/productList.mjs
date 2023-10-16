@@ -40,3 +40,4 @@ export default async function productList(selector, category) {
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
     discountIndicator(Allproducts);
 }
+
