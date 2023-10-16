@@ -1,5 +1,3 @@
-
-
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -16,6 +14,5 @@ export function getData(category = "tents") {
 
 export async function findProductById(id) {
   const products = await getData();
-  console.log(products);
   return products.find((item) => item.Id === id);
 }

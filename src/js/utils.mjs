@@ -51,15 +51,13 @@ export function renderWithTemplate(templateFn, parentElement, data, position = "
 }
 
 export function loadTemplate(path) {
-
     return async function () {
       const res = await fetch(path);
       if (res.ok) {
       const html = await res.text();
       return html;
       }
-
-} 
+    } 
 } 
 
 export async function loadHeaderFooter(){
@@ -71,4 +69,12 @@ export async function loadHeaderFooter(){
   
   headerTag.innerHTML = await headerTemplateFn();
   footerTag.innerHTML = await footerTemplateFn();
+  showCartCount();
 }
+
+export function showCartCount(){
+  let badge = document.querySelector(".cart-item-count");
+  badge.innerHTML = getLocalStorage("so-cart").length;
+}
+
+

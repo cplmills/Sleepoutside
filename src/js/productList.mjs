@@ -7,6 +7,7 @@ function productCardTemplate(product) {
       <img
         src="${product.Image}"
         alt="Image of ${product.Name}"
+        onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019';"
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
@@ -35,9 +36,9 @@ function discountIndicator(product) {
   
 }
 
-
 export default async function productList(selector, category) {
     const Allproducts = await getData(category);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
     discountIndicator(Allproducts);
 }
+
