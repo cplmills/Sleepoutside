@@ -4,8 +4,9 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 export default async function productDetails(productId) {
   try {
-  const myProductDetails = await findProductById(productId);
-  renderProductDetails(myProductDetails);
+    const myProductDetails = await findProductById(productId);
+    renderProductDetails(myProductDetails);
+    console.log("now here");
 
   // add listener to Add to Cart button
   document
@@ -47,7 +48,7 @@ function renderProductDetails(myProductDetails) {
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
-  newImg.src = fileExists(myProductDetails.Image);
+  newImg.src = myProductDetails.Image;
   newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
 
 
