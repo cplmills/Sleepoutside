@@ -84,15 +84,19 @@ export function listSort(list){
 
   if (sortSelector.value === "price-ascend") {
       list.sort(compareFunction)
+      document.querySelector('#sort-default').style.display = "none";
       } else if (sortSelector.value === "price-descend")
       {
         list.sort(compareFunctionReverse);
+        document.querySelector('#sort-default').style.display = "none";
       } else if (sortSelector.value === "brand-alphabetical-ascend")
       {
         list.sort(compareName);
+        document.querySelector('#sort-default').style.display = "none";
       } else if (sortSelector.value === "brand-alphabetical-descend")
       {
         list.sort(compareNameReverse);
+        document.querySelector('#sort-default').style.display = "none";
       }
 
   function compareFunction(a, b) {
