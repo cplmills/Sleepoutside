@@ -74,9 +74,7 @@ function renderProductDetails(myProductDetails) {
   // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
   let discountPercentageElement = document.createElement("p");
   discountPercentageElement.className = "product__discount-percentage";
-  discountPercentageElement.innerHTML = `Discount: ${discountPercentage.toFixed(
-    2
-  )*100}%`;
+  discountPercentageElement.innerHTML = `Discount: ${discountPercentage*100}%`;
 
   let newColor = document.createElement("p");
   newColor.className = "product__color";
