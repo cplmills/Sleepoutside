@@ -261,9 +261,9 @@ footer {
 }
 .grid-container {       
   display: grid;       
-  grid-template-columns: 1fr; 
+  grid-template-columns: repeat(4, 1fr); 
   /* 1 fraction for each column */      
-  grid-template-rows: repeat(4, 1fr); 
+  grid-template-rows: repeat(1fr); 
   /* 4 rows with 1 fraction each */      
   gap: 10px; /* Optional gap between grid items */    
 }    
