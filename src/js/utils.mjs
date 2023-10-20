@@ -78,3 +78,57 @@ export function showCartCount(){
 }
 
 
+
+export function listSort(list){
+  let sortSelector = document.querySelector("#sort-list");
+
+  if (sortSelector.value === "price-ascend") {
+      list.sort(compareFunction)
+      document.querySelector('#sort-default').style.display = "none";
+      } else if (sortSelector.value === "price-descend")
+      {
+        list.sort(compareFunctionReverse);
+        document.querySelector('#sort-default').style.display = "none";
+      } else if (sortSelector.value === "brand-alphabetical-ascend")
+      {
+        list.sort(compareName);
+        document.querySelector('#sort-default').style.display = "none";
+      } else if (sortSelector.value === "brand-alphabetical-descend")
+      {
+        list.sort(compareNameReverse);
+        document.querySelector('#sort-default').style.display = "none";
+      }
+
+  function compareFunction(a, b) {
+    return a.FinalPrice - b.FinalPrice;
+  }
+  function compareFunctionReverse(a, b) {
+    return b.FinalPrice - a.FinalPrice;
+  }
+  function compareName(a, b){
+    let nameA = a.Brand.Name.toLowerCase();
+    let nameB = b.Brand.Name.toLowerCase();
+
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    if (nameA === nameB) return 0;
+  }
+  function compareNameReverse(a, b){
+    let nameA = a.Brand.Name.toLowerCase();
+    let nameB = b.Brand.Name.toLowerCase();
+
+    if (nameA > nameB) return -1;
+    if (nameA < nameB) return 1;
+    if (nameA === nameB) return 0;
+  }
+  return list;
+    }
+
+  
+
+  
+
+  
+ 
+
+

@@ -1,5 +1,6 @@
 import { getData } from "./productData.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
+import { listSort } from "./utils.mjs"
 
 function productCardTemplate(product) {
     return `<li class="product-card">
@@ -39,6 +40,17 @@ function discountIndicator(product) {
 export default async function productList(selector, category) {
     const Allproducts = await getData(category);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
+    sorter(selector, Allproducts);
     discountIndicator(Allproducts);
+}
+
+function sorter(selector, list){
+  document.querySelector('#sort-list').addEventListener("change", () => {
+    let tempList = listSort(list);
+    let previousCardList = document.querySelectorAll('.product-card')
+    previousCardList.forEach(item => item.remove());
+    renderListWithTemplate(productCardTemplate, selector, tempList, "afterbegin", false);
+    discountIndicator(tempList);
+  })
 }
 
