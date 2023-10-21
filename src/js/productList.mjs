@@ -18,6 +18,8 @@ function productCardTemplate(product) {
 
 export default async function productList(selector, category) { 
     const element = document.querySelector(selector);
+    const newTitle = document.getElementById("topProducts");
+    newTitle.innerText = "Top Products: "+category.charAt(0).toUpperCase() + category.slice(1);
     const Allproducts = await getData(category);
     console.log(Allproducts);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
