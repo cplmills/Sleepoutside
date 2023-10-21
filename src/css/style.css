@@ -259,21 +259,21 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
-.grid-container {       
-  display: grid;       
-  grid-template-columns: repeat(4, 1fr); 
-  /* 1 fraction for each column */      
-  grid-template-rows: repeat(1fr); 
-  /* 4 rows with 1 fraction each */      
-  gap: 10px; /* Optional gap between grid items */    
-}    
- .grid-item {       
-  color: #fff;       
-  padding: 20px;       
-  text-align: center;      
-  border: 1px solid #414141;    
- }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 1 fraction for each column */
+  grid-template-rows: repeat(1fr);
+  /* 4 rows with 1 fraction each */
+  gap: 10px; /* Optional gap between grid items */
+}
+.grid-item {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #414141;
+}
 
- .grid-item:hover {
+.grid-item:hover {
   background-color: #f0a868;
- }
+}
