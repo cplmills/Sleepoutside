@@ -268,9 +268,12 @@ footer {
   gap: 10px; /* Optional gap between grid items */    
 }    
  .grid-item {       
-  background-color: #3498db;       
   color: #fff;       
   padding: 20px;       
   text-align: center;      
-  border: 1px solid #2980b9;    
+  border: 1px solid #414141;    
+ }
+
+ .grid-item:hover {
+  background-color: #f0a868;
  }

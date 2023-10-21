@@ -48,7 +48,7 @@ function renderProductDetails(myProductDetails) {
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
-  newImg.src = myProductDetails.Image;
+  newImg.src = myProductDetails.Images.PrimaryLarge;
   newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
 
 
