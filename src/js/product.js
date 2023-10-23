@@ -4,11 +4,7 @@ import { getParam } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
 
 const productId = getParam("product");
-init(productId);
-
-async function init(productNo) {
-  await productDetails(productNo);
-}
+productDetails(productId);
 
 // function addProductToCart(product) {
 //   const cartData = getLocalStorage("so-cart") || [];

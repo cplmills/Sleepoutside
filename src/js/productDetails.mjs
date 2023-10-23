@@ -48,7 +48,7 @@ function renderProductDetails(myProductDetails) {
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
-  newImg.src = myProductDetails.Image;
+  newImg.src = myProductDetails.Images.PrimaryLarge;
   newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
 
 
@@ -74,9 +74,7 @@ function renderProductDetails(myProductDetails) {
   // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
   let discountPercentageElement = document.createElement("p");
   discountPercentageElement.className = "product__discount-percentage";
-  discountPercentageElement.innerHTML = `Discount: ${discountPercentage.toFixed(
-    2
-  )*100}%`;
+  discountPercentageElement.innerHTML = `Discount: ${discountPercentage*100}%`;
 
   let newColor = document.createElement("p");
   newColor.className = "product__color";
