@@ -141,6 +141,38 @@ button {
 
 /* End cart icon styles */
 
+/* Begin breadcrumbs CSS */
+.container {
+  border-bottom: 2px solid #f0a868;
+}
+
+.breadcrumb, #breadcrumbol {
+  list-style: none;
+  padding: 0px;
+  margin: 10px;
+  
+}
+
+#breadcrumbol>li {
+  display: inline-block;
+}
+
+#breadcrumbol>li+li:before {
+  padding: 0 5px;
+  color: #f0a868;
+  content: "/\00a0";
+}
+
+#breadcrumbol>li>a {
+  text-decoration: none;
+  color: #414141;
+}
+
+#breadcrumbol>li>a:hover {
+  text-decoration: underline;
+  color: #f0a868;
+}
+/* End breadcrumbs */
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */
