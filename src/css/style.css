@@ -276,4 +276,6 @@ footer {
 
 .grid-item:hover {
   background-color: #f0a868;
+  transition-property: background-color;
+  transition-duration: 1.5s;
 }
