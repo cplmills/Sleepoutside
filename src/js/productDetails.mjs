@@ -21,7 +21,34 @@ export default async function productDetails(productId) {
 
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
-  addProductToCart(product);
+  let cart_items;
+  console.log(product);
+  try{
+    cart_items =getLocalStorage("so-cart") || [];
+    if(!Array.isArray(cart_items)) cart_items = [cart_items];
+  }
+  catch(err){
+    cart_items= [];
+  }
+  
+  let matched_item;
+  for (let i = 0; i < cart_items.length; i++){
+    let item = cart_items[i];
+    console.log(item.Id);
+    console.log(e.target.dataset.id);
+    if(item.Id == e.target.dataset.id) matched_item = i;
+  }
+  console.log(matched_item);
+  if(matched_item!=null){
+    ++cart_items[matched_item].quantity;
+    console.log(cart_items[matched_item].quantity);
+    setLocalStorage("so-cart",cart_items);  
+  }else{
+    if(!product?.quantity) product.quantity = 1;
+    console.log(product.quantity);
+    addProductToCart(product);
+  }
+  
   animateLogo();
 }
 
@@ -64,10 +91,14 @@ function renderProductDetails(myProductDetails) {
     discountPercentage = 0.05;
   } else if (myProductDetails.ListPrice >150) {
     discountPercentage = 0.03;
+  } else{
+    discountPercentage =0;
   }
+  
   const discountPrice = myProductDetails.ListPrice * discountPercentage;
   let discountElement = document.createElement("p");
   discountElement.className = "product__discount";
+  // console.log(discountPrice.toFixed(2));
   discountElement.innerHTML = `Save $${discountPrice.toFixed(2)}`;
   // Calculate and display discount percentage
 
