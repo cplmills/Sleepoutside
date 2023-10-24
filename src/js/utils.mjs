@@ -63,7 +63,7 @@ export function loadTemplate(path) {
 export async function loadHeaderFooter(){
   let headerTag = document.getElementById("header");
   let footerTag = document.getElementById("footer");
-
+ 
   const headerTemplateFn = loadTemplate("/partials/header.html")
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   
@@ -122,7 +122,7 @@ export function listSort(list){
     if (nameA === nameB) return 0;
   }
   return list;
-    }
+}
 
   
 

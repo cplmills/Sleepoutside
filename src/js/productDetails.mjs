@@ -1,4 +1,5 @@
 import { findProductById } from "./productData.mjs";
+import { createBreadcrumbs } from "./productList.mjs";
 import { getLocalStorage, setLocalStorage, showCartCount } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
@@ -125,4 +126,4 @@ function animateLogo() {
 }
 
 loadHeaderFooter();
-
+//createBreadcrumbs([['Home','/index.html']]);
