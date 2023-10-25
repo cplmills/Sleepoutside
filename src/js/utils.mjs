@@ -74,7 +74,11 @@ export async function loadHeaderFooter(){
 
 export function showCartCount(){
   let badge = document.querySelector(".cart-item-count");
-  badge.innerHTML = getLocalStorage("so-cart").length;
+  let cartCount = 0;
+  if ("so-cart" in localStorage) {
+    cartCount = getLocalStorage("so-cart").length;
+  }
+  badge.innerHTML = cartCount;
 }
 
 

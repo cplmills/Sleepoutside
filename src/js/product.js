@@ -6,5 +6,4 @@ import { findCategoryById } from "./productData.mjs";
 const productId = getParam("product");
 productDetails(productId);
 let thisCategory = await findCategoryById(getParam("product", "Category"));
-console.log(thisCategory);
 createBreadcrumbs([["Home", "../index.html"],[thisCategory, `../product-list/index.html?product=${thisCategory}`],[productId, "#"] ]);
