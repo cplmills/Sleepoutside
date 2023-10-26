@@ -81,8 +81,7 @@ export function showCartCount(){
 
 export function listSort(list){
   let sortSelector = document.querySelector("#sort-list");
-
-  if (sortSelector.value === "price-ascend") {
+    if (sortSelector.value === "price-ascend") {
       list.sort(compareFunction)
       document.querySelector('#sort-default').style.display = "none";
       } else if (sortSelector.value === "price-descend")
@@ -123,6 +122,17 @@ export function listSort(list){
   }
   return list;
     }
+  
+  export function sortProduct(templateFn, parentElement, data, position, boolValue) {
+    const sortChoices = document.querySelector('#sort-list');
+    sortChoices.addEventListener("change", () => {
+      const products = document.querySelectorAll('.product-card');
+      products.forEach(item => item.remove());
+      renderListWithTemplate(templateFn, parentElement, listSort(data), position, boolValue);
+    })
+    
+
+  }
 
   
 
