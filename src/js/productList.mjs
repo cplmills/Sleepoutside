@@ -1,5 +1,5 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, listSort, sortProduct } from "./utils.mjs";
 
 function productCardTemplate(product) {
     return `<li class="product-card">
@@ -21,7 +21,6 @@ export default async function productList(selector, category) {
     const newTitle = document.getElementById("topProducts");
     newTitle.innerText = "Top Products: "+category.charAt(0).toUpperCase() + category.slice(1);
     const Allproducts = await getData(category);
-    console.log(Allproducts);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
-    
+    sortProduct(productCardTemplate, selector, Allproducts, "afterbegin", false);
 }
