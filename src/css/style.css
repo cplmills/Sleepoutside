@@ -146,29 +146,29 @@ button {
   border-bottom: 2px solid #f0a868;
 }
 
-.breadcrumb, #breadcrumbol {
+.breadcrumb,
+#breadcrumbol {
   list-style: none;
   padding: 0px;
   margin: 10px;
-  
 }
 
-#breadcrumbol>li {
+#breadcrumbol > li {
   display: inline-block;
 }
 
-#breadcrumbol>li+li:before {
+#breadcrumbol > li + li:before {
   padding: 0 5px;
   color: #f0a868;
   content: "/\00a0";
 }
 
-#breadcrumbol>li>a {
+#breadcrumbol > li > a {
   text-decoration: none;
   color: #414141;
 }
 
-#breadcrumbol>li>a:hover {
+#breadcrumbol > li > a:hover {
   text-decoration: underline;
   color: #f0a868;
 }
@@ -272,6 +272,55 @@ button {
 .cart-footer.hide {
   display: none;
 }
+
+/* news letter styles starts here */
+.news-letter-container {
+  transition: opacity 1s ease-in-out;
+  color: #eee;
+  background-color: #555;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 35%;
+  opacity: 100%;
+}
+
+.news-letter-box {
+  padding: 0.5em;
+}
+
+.newsletter-heading {
+  display: flex;
+  flex-direction: row;
+}
+
+.newsletter-heading h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#close {
+  opacity: 80%;
+  cursor: pointer;
+  position: relative;
+  left: 9.5em;
+}
+
+.news-letter-box p {
+  font-size: 14px;
+}
+
+#newsletterEmail {
+  height: 2.5em;
+  width: 75%;
+}
+
+#newsletterBtn {
+  cursor: pointer;
+  height: 2.5em;
+}
+/* news letter styles ends here */
 
 @media screen and (min-width: 500px) {
   body {

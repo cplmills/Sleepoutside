@@ -131,7 +131,14 @@ export function listSort(list){
       renderListWithTemplate(templateFn, parentElement, listSort(data), position, boolValue);
     })
     
+  }
 
+  export function newsLetter() {
+    let closeBtn = document.querySelector('#close');
+    closeBtn.addEventListener('click', () => {
+      let newslettercontainer = document.querySelector('.news-letter-container')
+      newslettercontainer.style.opacity = "0%";
+    })
   }
 
   
