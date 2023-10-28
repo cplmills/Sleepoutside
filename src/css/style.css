@@ -124,55 +124,8 @@ button {
   }
 }
 
-.cart-item-count {
-  border-radius: 50%;
-  position: absolute;
-  left: -5px;
-  top: 1px;
-  display: block;
-  color: black;
-  background-color: #f0a868;
-  width: 1em;
-  height: 1em;
-  text-align: center;
-  line-height: 1em;
-  font-weight: bolder;
-}
-
 /* End cart icon styles */
 
-/* Begin breadcrumbs CSS */
-.container {
-  border-bottom: 2px solid #f0a868;
-}
-
-.breadcrumb, #breadcrumbol {
-  list-style: none;
-  padding: 0px;
-  margin: 10px;
-  
-}
-
-#breadcrumbol>li {
-  display: inline-block;
-}
-
-#breadcrumbol>li+li:before {
-  padding: 0 5px;
-  color: #f0a868;
-  content: "/\00a0";
-}
-
-#breadcrumbol>li>a {
-  text-decoration: none;
-  color: #414141;
-}
-
-#breadcrumbol>li>a:hover {
-  text-decoration: underline;
-  color: #f0a868;
-}
-/* End breadcrumbs */
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */
@@ -206,12 +159,6 @@ button {
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
-}
-
-.discount-indicator {
-  background-color: red;
-  color: white;
-  text-align: center;
 }
 
 .card__brand {
@@ -290,24 +237,4 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* 1 fraction for each column */
-  grid-template-rows: repeat(1fr);
-  /* 4 rows with 1 fraction each */
-  gap: 10px; /* Optional gap between grid items */
-}
-.grid-item {
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #414141;
-}
-
-.grid-item:hover {
-  background-color: #f0a868;
-  transition-property: background-color;
-  transition-duration: 1.5s;
 }

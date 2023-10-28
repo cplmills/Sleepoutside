@@ -1,12 +1,10 @@
 import { findProductById } from "./productData.mjs";
-import { getLocalStorage, setLocalStorage, showCartCount } from "./utils.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default async function productDetails(productId) {
   try {
-    const myProductDetails = await findProductById(productId);
-    renderProductDetails(myProductDetails);
-    console.log("now here");
+  const myProductDetails = await findProductById(productId);
+  renderProductDetails(myProductDetails);
 
   // add listener to Add to Cart button
   document
@@ -20,7 +18,9 @@ export default async function productDetails(productId) {
 }
 
 async function addToCartHandler(e) {
+  console.log(e);
   const product = await findProductById(e.target.dataset.id);
+  console.log(product);
   addProductToCart(product);
   animateLogo();
 }
@@ -29,7 +29,6 @@ function addProductToCart(product) {
   const cartData = getLocalStorage("so-cart") || [];
   cartData.push(product);
   setLocalStorage("so-cart", cartData);
-  showCartCount();
 }
 
 function renderProductDetails(myProductDetails) {
@@ -48,9 +47,8 @@ function renderProductDetails(myProductDetails) {
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
-  newImg.src = myProductDetails.Images.PrimaryLarge;
-  newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
-
+  newImg.src = myProductDetails.Image;
+  newImg.setAttribute("alt", myProductDetails.NameWithoutBrand); 
 
   let newPrice = document.createElement("p");
   newPrice.className = "product-card__price";
@@ -59,22 +57,27 @@ function renderProductDetails(myProductDetails) {
   //Calculate and display discount price
   
   // let discountPrice = myProductDetails.ListPrice - myProductDetails.FinalPrice;
+  console.log(myProductDetails.ListPrice);
   let discountPercentage;
   if (myProductDetails.ListPrice > 300) {
     discountPercentage = 0.05;
   } else if (myProductDetails.ListPrice >150) {
+    console.log('123');
     discountPercentage = 0.03;
   }
   const discountPrice = myProductDetails.ListPrice * discountPercentage;
+  console.log(discountPrice);
   let discountElement = document.createElement("p");
   discountElement.className = "product__discount";
-  discountElement.innerHTML = `Save $${discountPrice.toFixed(2)}`;
+  discountElement.innerHTML = `Save $${discountPrice}`;
   // Calculate and display discount percentage
 
   // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
   let discountPercentageElement = document.createElement("p");
   discountPercentageElement.className = "product__discount-percentage";
-  discountPercentageElement.innerHTML = `Discount: ${discountPercentage*100}%`;
+  discountPercentageElement.innerHTML = `Discount: ${discountPercentage.toFixed(
+    2
+  )*100}%`;
 
   let newColor = document.createElement("p");
   newColor.className = "product__color";
@@ -108,12 +111,12 @@ function renderProductDetails(myProductDetails) {
   let mainTag = document.querySelector("main"); 
   mainTag.appendChild(newSection);
 }
-
 function animateLogo() {
   let cartLogo = document.querySelector(".cart-logo");
   cartLogo.setAttribute("class", "logo-spinner");
 
   let btnAdd = document.querySelector("#addToCart");
+  console.log(btnAdd);
   btnAdd.innerHTML = "Item Added to Cart";
 
   setTimeout(function()
@@ -122,7 +125,5 @@ function animateLogo() {
       btnAdd.innerHTML = "Add to Cart";
 
   }, 2000);
+  
 }
-
-loadHeaderFooter();
-
