@@ -58,16 +58,13 @@ function renderProductDetails(myProductDetails) {
   //Calculate and display discount price
   
   // let discountPrice = myProductDetails.ListPrice - myProductDetails.FinalPrice;
-  console.log(myProductDetails.ListPrice);
   let discountPercentage;
   if (myProductDetails.ListPrice > 300) {
     discountPercentage = 0.05;
   } else if (myProductDetails.ListPrice >150) {
-    console.log('123');
     discountPercentage = 0.03;
   }
   const discountPrice = myProductDetails.ListPrice * discountPercentage;
-  console.log(discountPrice);
   let discountElement = document.createElement("p");
   discountElement.className = "product__discount";
   discountElement.innerHTML = `Save $${discountPrice}`;
@@ -115,6 +112,7 @@ function renderProductDetails(myProductDetails) {
   let mainTag = document.querySelector("main"); 
   mainTag.appendChild(newSection);
 }
+
 function animateLogo() {
   let cartLogo = document.querySelector(".cart-logo");
   cartLogo.setAttribute("class", "logo-spinner");
