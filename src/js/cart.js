@@ -86,7 +86,9 @@ function showTotalContents(items) {
         discountPercentage = 0.05;
       } else if (item.ListPrice > 150) {
         discountPercentage = 0.03;
-      }
+      } else (item.ListPrice < 100) 
+        discountPercentage = 0.01;
+      
       const discountPrice = item.ListPrice * discountPercentage;
       const discountedPrice = item.ListPrice - discountPrice;
       item.discountedPrice = discountedPrice;
