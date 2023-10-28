@@ -1,12 +1,14 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate, listSort, sortProduct } from "./utils.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
+import { listSort } from "./utils.mjs"
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-    <a href="../product_pages/index.html?product=${product.Id}">
+    <a href="product_pages/index.html?product=${product.Id}">
       <img
-        src="${product.Images.PrimarySmall}"
+        src="${product.Image}"
         alt="Image of ${product.Name}"
+        onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019';"
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
@@ -15,42 +17,40 @@ function productCardTemplate(product) {
   </li>`;
 }
 
-export default async function productList(selector, category) { 
-    const element = document.querySelector(selector);
-    const newTitle = document.getElementById("topProducts");
-    newTitle.innerText = "Top Products: "+category.charAt(0).toUpperCase() + category.slice(1);
+function discountIndicator(product) {
+  const productCard = document.querySelectorAll('.product-card');
+  const suggestedRetailPriceList = product.map((item) => { 
+    return item.SuggestedRetailPrice});
+  const ListPriceList = product.map((item) => {
+    return item.ListPrice
+  })
+
+  const discountList = [];
+  for (let i = 0; i < product.length; i++) {
+      let discountPrice = ( ( ( suggestedRetailPriceList[i] - ListPriceList[i] ) / suggestedRetailPriceList[i] )  * 100 );
+      discountList.push(discountPrice.toFixed(0));
+  }
+  productCard.forEach(function(card,index) {
+    let discountTemplate = `<p class="discount-indicator">${discountList[index]}% OFF!</p>`
+    card.insertAdjacentHTML("afterbegin", discountTemplate);
+  })
+  
+}
+
+export default async function productList(selector, category) {
     const Allproducts = await getData(category);
-    renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);    
+    renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
+    sorter(selector, Allproducts);
+    discountIndicator(Allproducts);
 }
 
-export function createBreadcrumbs(breadcrumbsArray) {
-  // Get a reference to the breadcrumb container element
-  const breadcrumbContainer = document.getElementById('breadcrumbs');
-
-  // Clear the container
-  breadcrumbContainer.innerHTML = '';
-  breadcrumbContainer.classList.add("divider");
-  // Iterate through the breadcrumb array and create breadcrumb elements
-  breadcrumbsArray.forEach((breadcrumb, index) => {
-    const [name, link] = breadcrumb;
-
-    // Create a list item element
-    const listItem = document.createElement('li');
-
-    // Create a link element and capatalize the first letter of the name
-    // if the link is the current page (denoted by a `#` for the link element) set the style to activeBreadcrumb
-    const anchor = document.createElement('a');
-    anchor.textContent = name.charAt(0).toUpperCase() + name.slice(1);
-    anchor.href = link;
-    if (link === "#") {
-      anchor.id = "activeBreadcrumb";
-    }
-
-    // Append the link to the list item
-    listItem.appendChild(anchor);
-
-    // Append the list item to the breadcrumb container
-    breadcrumbContainer.appendChild(listItem);
-  });
-//  sortProduct(productCardTemplate, selector, Allproducts, "afterbegin", false);
+function sorter(selector, list){
+  document.querySelector('#sort-list').addEventListener("change", () => {
+    let tempList = listSort(list);
+    let previousCardList = document.querySelectorAll('.product-card')
+    previousCardList.forEach(item => item.remove());
+    renderListWithTemplate(productCardTemplate, selector, tempList, "afterbegin", false);
+    discountIndicator(tempList);
+  })
 }
+

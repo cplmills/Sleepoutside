@@ -63,7 +63,7 @@ export function loadTemplate(path) {
 export async function loadHeaderFooter(){
   let headerTag = document.getElementById("header");
   let footerTag = document.getElementById("footer");
- 
+
   const headerTemplateFn = loadTemplate("/partials/header.html")
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   
@@ -74,18 +74,15 @@ export async function loadHeaderFooter(){
 
 export function showCartCount(){
   let badge = document.querySelector(".cart-item-count");
-  let cartCount = 0;
-  if ("so-cart" in localStorage) {
-    cartCount = getLocalStorage("so-cart").length;
-  }
-  badge.innerHTML = cartCount;
+  badge.innerHTML = getLocalStorage("so-cart").length;
 }
 
 
 
 export function listSort(list){
   let sortSelector = document.querySelector("#sort-list");
-    if (sortSelector.value === "price-ascend") {
+
+  if (sortSelector.value === "price-ascend") {
       list.sort(compareFunction)
       document.querySelector('#sort-default').style.display = "none";
       } else if (sortSelector.value === "price-descend")
@@ -125,13 +122,13 @@ export function listSort(list){
     if (nameA === nameB) return 0;
   }
   return list;
-}
+    }
 
-  export function sortProduct(templateFn, parentElement, data, position, boolValue) {
-    const sortChoices = document.querySelector('#sort-list');
-    sortChoices.addEventListener("change", () => {
-      const products = document.querySelectorAll('.product-card');
-      products.forEach(item => item.remove());
-      renderListWithTemplate(templateFn, parentElement, listSort(data), position, boolValue);
-    })
-  }
+  
+
+  
+
+  
+ 
+
+

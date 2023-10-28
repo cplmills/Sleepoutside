@@ -41,7 +41,7 @@ function cartItemTemplate(item, index) {
   }">&#10006;</button>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Images.PrimaryLarge}"
+      src="${item.Image}"
       alt="${item.Name}"
     />
   </a>

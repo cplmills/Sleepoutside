@@ -141,39 +141,6 @@ button {
 
 /* End cart icon styles */
 
-/* Begin breadcrumbs CSS */
-
-#breadcrumbs {
-  list-style: none;
-  padding: 0px 0px 10px 0px;
-  margin: 10px 0px 10px 0px;
-  
-}
-
-#breadcrumbs>li {
-  display: inline-block;
-}
-
-#breadcrumbs>li+li:before {
-  padding: 0 5px;
-  color: #f0a868;
-  content: "/\00a0";
-}
-
-#breadcrumbs>li>a {
-  text-decoration: none;
-  color: #414141;
-}
-
-#breadcrumbs>li>a:hover {
-  text-decoration: underline;
-  color: #f0a868;
-}
-
-#activeBreadcrumb{
-  color: Orange!important;
-}
-/* End breadcrumbs */
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */
@@ -291,24 +258,4 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* 1 fraction for each column */
-  grid-template-rows: repeat(1fr);
-  /* 4 rows with 1 fraction each */
-  gap: 10px; /* Optional gap between grid items */
-}
-.grid-item {
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #414141;
-}
-
-.grid-item:hover {
-  background-color: #f0a868;
-  transition-property: background-color;
-  transition-duration: 1.5s;
 }

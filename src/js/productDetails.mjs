@@ -1,5 +1,4 @@
 import { findProductById } from "./productData.mjs";
-import { createBreadcrumbs } from "./productList.mjs";
 import { getLocalStorage, setLocalStorage, showCartCount } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
@@ -7,6 +6,7 @@ export default async function productDetails(productId) {
   try {
     const myProductDetails = await findProductById(productId);
     renderProductDetails(myProductDetails);
+    console.log("now here");
 
   // add listener to Add to Cart button
   document
@@ -48,7 +48,7 @@ function renderProductDetails(myProductDetails) {
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
-  newImg.src = myProductDetails.Images.PrimaryLarge;
+  newImg.src = myProductDetails.Image;
   newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
 
 
@@ -74,7 +74,9 @@ function renderProductDetails(myProductDetails) {
   // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
   let discountPercentageElement = document.createElement("p");
   discountPercentageElement.className = "product__discount-percentage";
-  discountPercentageElement.innerHTML = `Discount: ${discountPercentage*100}%`;
+  discountPercentageElement.innerHTML = `Discount: ${discountPercentage.toFixed(
+    2
+  )*100}%`;
 
   let newColor = document.createElement("p");
   newColor.className = "product__color";
@@ -125,4 +127,4 @@ function animateLogo() {
 }
 
 loadHeaderFooter();
-//createBreadcrumbs([['Home','/index.html']]);
+
