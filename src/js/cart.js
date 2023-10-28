@@ -76,7 +76,7 @@ function removeCartItem(index) {
 
 function showTotalContents(items) {
   //ensure this only runs on the cart page
-  if (window.location.href.indexOf("cart.html") > 0) {
+  if (window.location.href.indexOf("cart/index.html") > 0) {
     items.forEach((item) => {
       let discountPercentage = 0;
       if (item.ListPrice > 300) {
@@ -90,8 +90,7 @@ function showTotalContents(items) {
     });
 
     if (items.length !== 0) {
-      document.querySelector(".cart-footer.hide").style.display = "unset";
-
+      document.querySelector(".cart-footer").style.display = "unset";
       const itemPricesList = items.map((item) => item.discountedPrice);
 
       const priceTotal = itemPricesList.reduce(
