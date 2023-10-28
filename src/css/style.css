@@ -124,21 +124,6 @@ button {
   }
 }
 
-.cart-item-count {
-  border-radius: 50%;
-  position: absolute;
-  left: -5px;
-  top: 1px;
-  display: block;
-  color: black;
-  background-color: #f0a868;
-  width: 1em;
-  height: 1em;
-  text-align: center;
-  line-height: 1em;
-  font-weight: bolder;
-}
-
 /* End cart icon styles */
 
 .mission {
@@ -174,12 +159,6 @@ button {
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
-}
-
-.discount-indicator {
-  background-color: red;
-  color: white;
-  text-align: center;
 }
 
 .card__brand {

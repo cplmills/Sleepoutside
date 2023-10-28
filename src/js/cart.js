@@ -1,17 +1,15 @@
-import { loadHeaderFooter, showCartCount } from "./utils.mjs";
+import { doc } from "prettier";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  if (localStorage.getItem("so-cart") === null || cartItems.length === 0) {
+  if (localStorage.getItem("so-cart") === null) {
     // if there are no items in the cart
-    const emptyCartMessage = document.querySelector(".cart-heading");
-    emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
-    // document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
+    const emptyCartMessage = document.createElement("h3");
+    emptyCartMessage.innerHTML = "You Have No Items In Your Cart";
+    document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
   } else {
-    const htmlItems = cartItems.map((item, index) =>
-      cartItemTemplate(item, index)
-    );
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     const removeButtons = document.querySelectorAll(".remove-button");
     removeButtons.forEach((button, index) => {
@@ -19,8 +17,7 @@ function renderCartContents() {
         removeCartItem(index);
       });
     });
-    // Update the total price
-    showTotalContents(cartItems);
+    // document.querySelector(".remove-button").addEventListener('click', removeCartItem)
   }
 }
 
@@ -69,49 +66,41 @@ function removeCartItem(index) {
 
     // Re-render the cart list
     renderCartContents();
-    checkCartItems();
-    showCartCount();
   }
 }
 
 function showTotalContents(items) {
-  //ensure this only runs on the cart page
-  if (window.location.href.indexOf("cart.html") > 0) {
-    items.forEach((item) => {
-      let discountPercentage = 0;
-      if (item.ListPrice > 300) {
-        discountPercentage = 0.05;
-      } else if (item.ListPrice > 150) {
-        discountPercentage = 0.03;
-      }
-      const discountPrice = item.ListPrice * discountPercentage;
-      const discountedPrice = item.ListPrice - discountPrice;
-      item.discountedPrice = discountedPrice;
-    });
-
-    if (items.length !== 0) {
-      document.querySelector(".cart-footer.hide").style.display = "unset";
-
-      const itemPricesList = items.map((item) => item.discountedPrice);
-
-      const priceTotal = itemPricesList.reduce(
-        (item, currentTotal) => item + currentTotal,
-        0
-      );
-
-      // Clear the old total and insert the updated total
-      const totalElement = document.querySelector(".cart-total");
-      totalElement.innerHTML = `Total: $${priceTotal.toFixed(2)}`;
-    } else {
-      // If there are no items, clear the total
-      const totalElement = document.querySelector(".cart-total");
-      totalElement.innerHTML = "";
+  items.forEach((item) => {
+    let discountPercentage = 0;
+    if (item.ListPrice > 300) {
+      discountPercentage = 0.05;
+    } else if (item.ListPrice > 150) {
+      discountPercentage = 0.03;
     }
+    const discountPrice = item.ListPrice * discountPercentage;
+    const discountedPrice = item.ListPrice - discountPrice;
+    item.discountedPrice = discountedPrice;
+  });
+  console.log(items);
+  if (items.length != 0) {
+    document.querySelector(".cart-footer.hide").style.display = "unset";
+
+    const itemPricesList = items.map((item) => item.discountedPrice);
+
+    const priceTotal = itemPricesList.reduce(
+      (item, currentTotal) => item + currentTotal,
+      0
+    );
+
+    document
+      .querySelector(".cart-total")
+      .insertAdjacentHTML("beforeend", `$${priceTotal.toFixed(2)}`);
   }
 }
 
 function checkCartItems() {
   const cartItems = getLocalStorage("so-cart");
+  console.log(cartItems);
   if (cartItems != null) {
     showTotalContents(cartItems);
   }
@@ -119,4 +108,3 @@ function checkCartItems() {
 
 renderCartContents();
 checkCartItems();
-loadHeaderFooter();

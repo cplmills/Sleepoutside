@@ -39,6 +39,7 @@ function discountIndicator(product) {
 
 export default async function productList(selector, category) {
     const Allproducts = await getData(category);
+    console.log(Allproducts);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
     sorter(selector, Allproducts);
     discountIndicator(Allproducts);
