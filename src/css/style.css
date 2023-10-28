@@ -311,3 +311,36 @@ footer {
   transition-property: background-color;
   transition-duration: 1.5s;
 }
+
+
+/* Start checout form styles */
+fieldset {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+legend {
+  font-weight: bold;
+}
+label {
+  display: block;
+  margin-top: 5px;
+}
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+}
+input:invalid {
+  background-color: #FFDDDD; /* Red background for invalid input */
+}
+
+input:valid {
+  background-color: #d7f4d8; /* Red background for invalid input */
+}
+
+.noinput {
+  border: none;
+}
