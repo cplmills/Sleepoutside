@@ -123,6 +123,24 @@ export function listSort(list){
   }
   return list;
     }
+  
+  export function sortProduct(templateFn, parentElement, data, position, boolValue) {
+    const sortChoices = document.querySelector('#sort-list');
+    sortChoices.addEventListener("change", () => {
+      const products = document.querySelectorAll('.product-card');
+      products.forEach(item => item.remove());
+      renderListWithTemplate(templateFn, parentElement, listSort(data), position, boolValue);
+    })
+    
+  }
+
+  export function newsLetter() {
+    let closeBtn = document.querySelector('#close');
+    closeBtn.addEventListener('click', () => {
+      let newslettercontainer = document.querySelector('.news-letter-container')
+      newslettercontainer.style.opacity = "0%";
+    })
+  }
 
   
 
