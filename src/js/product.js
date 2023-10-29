@@ -1,6 +1,7 @@
 import { createBreadcrumbs } from "./productList.mjs";
 import { getParam } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
+import { findCategoryById } from "./externalServices.mjs";
 
 const productId = getParam("product");
 productDetails(productId);

@@ -40,7 +40,6 @@ export function createBreadcrumbs(breadcrumbsArray) {
     // Create a link element and capatalize the first letter of the name
     // if the link is the current page (denoted by a `#` for the link element) set the style to activeBreadcrumb
     const anchor = document.createElement('a');
-    console.log(breadcrumb[0]);
     anchor.textContent = breadcrumb[0].charAt(0).toUpperCase() + name.slice(1);
     anchor.href = link;
     if (link === "#") {

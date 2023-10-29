@@ -20,6 +20,12 @@ export async function getProductById(id) {
   return product.Result;
 }
 
+export async function findCategoryById(id) {
+  const response = await fetch(baseURL + `product/${id}`);
+  const product = await convertToJson(response);
+  return product.Result.Category;
+}
+
 export async function checkout(payload) {
   const options = {
     method: "POST",
