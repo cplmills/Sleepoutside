@@ -352,7 +352,7 @@ input:valid {
   border: none;
 }
 
-nav #icons{
+#icons{
   display: flex;
   justify-content: center;
 }
