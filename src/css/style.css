@@ -292,18 +292,19 @@ footer {
   padding: 1em;
 }
 .grid-container {
+  width: 60%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* 1 fraction for each column */
-  grid-template-rows: repeat(1fr);
-  /* 4 rows with 1 fraction each */
-  gap: 10px; /* Optional gap between grid items */
+  gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  
 }
 .grid-item {
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #414141;
+  padding: 10px;  
 }
 
 .grid-item:hover {
@@ -343,4 +344,9 @@ input:valid {
 
 .noinput {
   border: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
 }
