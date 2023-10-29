@@ -1,10 +1,10 @@
-// import { setLocalStorage } from "./utils.mjs";
-// import { getLocalStorage } from "./utils.mjs";
+import { createBreadcrumbs } from "./productList.mjs";
 import { getParam } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
 
 const productId = getParam("product");
 productDetails(productId);
+createBreadcrumbs([["Home", "../index.html"],[productId, `../product-list/index.html?product=${getParam("category")}`]]);
 
 // function addProductToCart(product) {
 //   const cartData = getLocalStorage("so-cart") || [];
