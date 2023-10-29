@@ -7,8 +7,8 @@ function renderCartContents() {
     // if there are no items in the cart
     const emptyCartMessage = document.querySelector(".cart-heading");
     emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
-    // document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
-  } else {
+  } 
+  if (cartItems.length >= 0) {
     const htmlItems = cartItems.map((item, index) =>
       cartItemTemplate(item, index)
     );
@@ -41,7 +41,7 @@ function cartItemTemplate(item, index) {
   }">&#10006;</button>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
@@ -76,7 +76,7 @@ function removeCartItem(index) {
 
 function showTotalContents(items) {
   //ensure this only runs on the cart page
-  if (window.location.href.indexOf("cart.html") > 0) {
+  if (window.location.href.indexOf("cart/index.html") > 0) {
     items.forEach((item) => {
       let discountPercentage = 0;
       if (item.ListPrice > 300) {
@@ -90,8 +90,7 @@ function showTotalContents(items) {
     });
 
     if (items.length !== 0) {
-      document.querySelector(".cart-footer.hide").style.display = "unset";
-
+      document.querySelector(".cart-footer").style.display = "unset";
       const itemPricesList = items.map((item) => item.discountedPrice);
 
       const priceTotal = itemPricesList.reduce(
