@@ -7,7 +7,8 @@ function renderCartContents() {
     // if there are no items in the cart
     const emptyCartMessage = document.querySelector(".cart-heading");
     emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
-  } else {
+  } 
+  if (cartItems.length >= 0) {
     const htmlItems = cartItems.map((item, index) =>
       cartItemTemplate(item, index)
     );
