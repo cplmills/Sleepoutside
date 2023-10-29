@@ -7,7 +7,6 @@ function renderCartContents() {
     // if there are no items in the cart
     const emptyCartMessage = document.querySelector(".cart-heading");
     emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
-    // document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
   } else {
     const htmlItems = cartItems.map((item, index) =>
       cartItemTemplate(item, index)
@@ -41,7 +40,7 @@ function cartItemTemplate(item, index) {
   }">&#10006;</button>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
