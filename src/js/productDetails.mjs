@@ -6,7 +6,6 @@ export default async function productDetails(productId) {
   try {
     const myProductDetails = await getProductById(productId);
     renderProductDetails(myProductDetails);
-    console.log("now here");
 
   // add listener to Add to Cart button
   document

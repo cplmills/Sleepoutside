@@ -4,7 +4,8 @@ import productDetails from "./productDetails.mjs";
 
 const productId = getParam("product");
 productDetails(productId);
-createBreadcrumbs([["Home", "../index.html"],[productId, `../product-list/index.html?product=${getParam("category")}`]]);
+let thisCategory = await findCategoryById(getParam("product", "Category"));
+createBreadcrumbs([["Home", "../index.html"],[thisCategory, `../product-list/index.html?product=${thisCategory}`],[productId, "#"] ]);
 
 // function addProductToCart(product) {
 //   const cartData = getLocalStorage("so-cart") || [];
