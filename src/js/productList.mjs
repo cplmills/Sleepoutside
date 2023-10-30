@@ -33,7 +33,9 @@ export function createBreadcrumbs(breadcrumbsArray) {
   breadcrumbContainer.classList.add("divider");
   // Iterate through the breadcrumb array and create breadcrumb elements
   breadcrumbsArray.forEach((breadcrumb, index) => {
-    const [name, link] = breadcrumb;
+    const name = breadcrumb[0];
+    const link = breadcrumb[1];
+    console.log("this: " + name + ": " + link);
     // Create a list item element
     const listItem = document.createElement('li');
 
