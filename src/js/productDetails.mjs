@@ -45,11 +45,27 @@ function renderProductDetails(myProductDetails) {
   newH2.className = "divider";
   newH2.innerHTML = myProductDetails.NameWithoutBrand;
 
+  let newPicture = document.createElement("picture");
+  let newSmallSource = document.createElement("source");
+  newSmallSource.setAttribute("srcset", myProductDetails.Images.PrimarySmall);
+  newSmallSource.setAttribute("media", "(max-width: 80px)");
+
+  let newMediumSource = document.createElement("source");
+  newMediumSource.setAttribute("srcset", myProductDetails.Images.PrimaryMedium);
+  newMediumSource.setAttribute("media", "(max-width: 160px)");
+  
+  // let newLargeSource = document.createElement("source");
+  // newLargeSource.setAttribute("srcset", myProductDetails.Images.PrimaryLarge); 
+
   let newImg = document.createElement("img");
   newImg.className = "divider";
   newImg.src = myProductDetails.Images.PrimaryLarge;
   newImg.setAttribute("alt", myProductDetails.NameWithoutBrand);
 
+  newPicture.appendChild(newSmallSource);
+  newPicture.appendChild(newMediumSource);
+  // newPicture.appendChild(newLargeSource);
+  newPicture.appendChild(newImg);
 
   let newPrice = document.createElement("p");
   newPrice.className = "product-card__price";
@@ -94,7 +110,7 @@ function renderProductDetails(myProductDetails) {
 
   newSection.append(newH3);
   newSection.append(newH2);
-  newSection.append(newImg);
+  newSection.append(newPicture);
   newSection.append(newPrice);
   newSection.append(discountElement);
   newSection.append(discountPercentageElement);

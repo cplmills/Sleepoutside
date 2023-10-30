@@ -2,12 +2,16 @@ import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate, listSort, sortProduct } from "./utils.mjs";
 
 function productCardTemplate(product) {
+  console.log(product);
     return `<li class="product-card">
     <a href="../product_pages/index.html?product=${product.Id}">
-      <img
-        src="${product.Images.PrimarySmall}"
-        alt="Image of ${product.Name}"
-      />
+      <picture>
+        <source srcset="${product.Images.PrimarySmall}" media="(max-width: 80px)">
+        <source srcset="${product.Images.PrimaryMedium}" media="(max-width: 120px)">
+        <source srcset="${product.Images.PrimaryLarge}">
+        <img src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}">
+      </picture>
+
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p></a
@@ -35,7 +39,6 @@ export function createBreadcrumbs(breadcrumbsArray) {
   breadcrumbsArray.forEach((breadcrumb, index) => {
     const name = breadcrumb[0];
     const link = breadcrumb[1];
-    console.log("this: " + name + ": " + link);
     // Create a list item element
     const listItem = document.createElement('li');
 
