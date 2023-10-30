@@ -141,6 +141,44 @@ button {
 
 /* End cart icon styles */
 
+/* Begin breadcrumbs CSS */
+.container {
+  border-bottom: 2px solid #f0a868;
+}
+
+#breadcrumbs {
+  list-style: none;
+  padding: 10px;
+  margin: 0px;
+  
+}
+
+#breadcrumbs>li {
+  display: inline-block;
+    padding: 10px,0,10px,0;
+
+}
+
+#breadcrumbs>li+li:before {
+  padding: 0 5px;
+  color: #f0a868;
+  content: "/\00a0";
+}
+
+#breadcrumbs>li>a {
+  text-decoration: none;
+  color: #414141;
+}
+
+#breadcrumbs>li>a:hover {
+  text-decoration: underline;
+  color: #f0a868;
+}
+
+#activeBreadcrumb{
+  color: Orange!important;
+}
+/* End breadcrumbs */
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */
@@ -258,4 +296,63 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+.grid-container {
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  
+}
+.grid-item {
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 10px;  
+}
+
+.grid-item:hover {
+  background-color: #f0a868;
+  transition-property: background-color;
+  transition-duration: 1.5s;
+}
+
+
+/* Start checout form styles */
+fieldset {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+legend {
+  font-weight: bold;
+}
+label {
+  display: block;
+  margin-top: 5px;
+}
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+}
+input:invalid {
+  background-color: #FFDDDD; /* Red background for invalid input */
+}
+
+input:valid {
+  background-color: #d7f4d8; /* Red background for invalid input */
+}
+
+.noinput {
+  border: none;
+}
+
+#icons{
+  display: flex;
+  justify-content: center;
 }
