@@ -114,6 +114,7 @@ function showTotalContents(items) {
       totalElement.innerHTML = "";
     }
   }
+  showTotalContents();
 }
 
 function checkCartItems() {

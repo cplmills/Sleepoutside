@@ -148,13 +148,14 @@ button {
 
 .breadcrumb, #breadcrumbol {
   list-style: none;
-  padding: 0px;
-  margin: 10px;
+  padding: 10px;
+  margin: 0px;
   
 }
 
 #breadcrumbol>li {
   display: inline-block;
+  padding: 10px,0,10px,0;
 }
 
 #breadcrumbol>li+li:before {
@@ -171,6 +172,9 @@ button {
 #breadcrumbol>li>a:hover {
   text-decoration: underline;
   color: #f0a868;
+}
+#activeBreadcrumb{
+  color: Orange!important;
 }
 /* End breadcrumbs */
 .mission {
@@ -292,22 +296,62 @@ footer {
   padding: 1em;
 }
 .grid-container {
+  width: 60%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* 1 fraction for each column */
-  grid-template-rows: repeat(1fr);
+  /*grid-template-rows: repeat(1fr);
   /* 4 rows with 1 fraction each */
-  gap: 10px; /* Optional gap between grid items */
+  gap: 20px; /* Optional gap between grid items */
+  background-color: #fff;
+  padding: 20px;
 }
 .grid-item {
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #414141;
+  padding: 10px;
+  
 }
 
 .grid-item:hover {
   background-color: #f0a868;
   transition-property: background-color;
   transition-duration: 1.5s;
+}
+/* Start checkout form styles */
+fieldset {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+legend {
+  font-weight: bold;
+}
+label {
+  display: block;
+  margin-top: 5px;
+}
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+}
+input:invalid {
+  background-color: #FFDDDD; /* Red background for invalid input */
+}
+
+input:valid {
+  background-color: #d7f4d8; /* Red background for invalid input */
+}
+
+.noinput {
+  border: none;
+}
+
+#icons{
+  display: flex;
+  justify-content: center;
 }
