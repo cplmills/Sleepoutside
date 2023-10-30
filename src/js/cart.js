@@ -41,7 +41,7 @@ function cartItemTemplate(item, index) {
   }">&#10006;</button>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
@@ -52,7 +52,7 @@ function cartItemTemplate(item, index) {
   <p class="cart-card__quantity">qty: ${item.quantity}</p>
   <p class="cart-card__price">$${discountedPrice.toFixed(2)}</p>
 </li>`;
-
+console.log(item);
   return newItem;
 }
 

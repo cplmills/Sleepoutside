@@ -34,18 +34,14 @@ async function addToCartHandler(e) {
   let matched_item;
   for (let i = 0; i < cart_items.length; i++){
     let item = cart_items[i];
-    console.log(item.Id);
-    console.log(e.target.dataset.id);
     if(item.Id == e.target.dataset.id) matched_item = i;
   }
   console.log(matched_item);
   if(matched_item!=null){
     ++cart_items[matched_item].quantity;
-    console.log(cart_items[matched_item].quantity);
     setLocalStorage("so-cart",cart_items);  
   }else{
     if(!product?.quantity) product.quantity = 1;
-    console.log(product.quantity);
     addProductToCart(product);
   }
   
