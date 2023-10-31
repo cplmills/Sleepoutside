@@ -82,10 +82,10 @@ const checkoutProcess = {
     let f_tax = document.getElementById("tax");
     let f_orderTotal = document.getElementById("orderTotal");
 
-    f_subtotal.setAttribute("value", this.orderTotal);
-    f_shipping.setAttribute("value", this.shipping);
-    f_tax.setAttribute("value",this.tax);
-    f_orderTotal.setAttribute("value",this.orderTotal);
+    f_subtotal.setAttribute("value", '$' + this.orderTotal);
+    f_shipping.setAttribute("value", '$' + this.shipping);
+    f_tax.setAttribute("value", '$' + this.tax);
+    f_orderTotal.setAttribute("value", '$' + this.orderTotal);
   },
 
   checkout: async function (form) {
