@@ -150,33 +150,31 @@ button {
   list-style: none;
   padding: 10px;
   margin: 0px;
-  
 }
 
-#breadcrumbs>li {
+#breadcrumbs > li {
   display: inline-block;
-    padding: 10px,0,10px,0;
-
+  padding: 10px, 0, 10px, 0;
 }
 
-#breadcrumbs>li+li:before {
+#breadcrumbs > li + li:before {
   padding: 0 5px;
   color: #f0a868;
   content: "/\00a0";
 }
 
-#breadcrumbs>li>a {
+#breadcrumbs > li > a {
   text-decoration: none;
   color: #414141;
 }
 
-#breadcrumbs>li>a:hover {
+#breadcrumbs > li > a:hover {
   text-decoration: underline;
   color: #f0a868;
 }
 
-#activeBreadcrumb{
-  color: Orange!important;
+#activeBreadcrumb {
+  color: Orange !important;
 }
 /* End breadcrumbs */
 .mission {
@@ -279,6 +277,56 @@ button {
   display: none;
 }
 
+/* news letter styles starts here */
+.news-letter-container {
+  transition: opacity 1s ease-in-out;
+  color: #eee;
+  background-color: #555;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 30%;
+  opacity: 100%;
+}
+
+.news-letter-box {
+  padding: 0.5em;
+}
+
+.newsletter-heading {
+  display: grid;
+  grid-template-columns: 0.95fr 0.05fr;
+}
+
+.newsletter-heading h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#close {
+  opacity: 80%;
+  cursor: pointer;
+  position: relative;
+}
+
+.news-letter-box p {
+  font-size: 14px;
+}
+
+#newsletterEmail {
+  height: 2.5em;
+  width: 80%;
+  background-color: #eee;
+}
+
+#newsletterBtn {
+  cursor: pointer;
+  height: 2.5em;
+  background-color: #eee;
+}
+/* news letter styles ends here */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -304,13 +352,12 @@ footer {
   gap: 20px;
   background-color: #fff;
   padding: 20px;
-  
 }
 .grid-item {
   justify-content: center;
   align-items: center;
   color: #fff;
-  padding: 10px;  
+  padding: 10px;
 }
 
 .grid-item:hover {
@@ -318,7 +365,6 @@ footer {
   transition-property: background-color;
   transition-duration: 1.5s;
 }
-
 
 /* Start checout form styles */
 fieldset {
@@ -341,7 +387,7 @@ input[type="password"] {
   margin: 5px 0;
 }
 input:invalid {
-  background-color: #FFDDDD; /* Red background for invalid input */
+  background-color: #ffdddd; /* Red background for invalid input */
 }
 
 input:valid {
@@ -352,7 +398,7 @@ input:valid {
   border: none;
 }
 
-#icons{
+#icons {
   display: flex;
   justify-content: center;
 }

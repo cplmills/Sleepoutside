@@ -6,9 +6,13 @@ import { findCategoryById } from "./externalServices.mjs";
 const productId = getParam("product");
 productDetails(productId);
 
-let thisCategory = findCategoryById(productId).then(result => {
-    let categoryName = result;
-    createBreadcrumbs([["Home", "../index.html"],[categoryName, `../product-list/index.html?product=${categoryName}`],[productId, "#"] ]);
+let thisCategory = findCategoryById(productId).then((result) => {
+  let categoryName = result;
+  createBreadcrumbs([
+    ["Home", "../index.html"],
+    [categoryName, `../product-list/index.html?product=${categoryName}`],
+    [productId, "#"],
+  ]);
 });
 
 // function addProductToCart(product) {

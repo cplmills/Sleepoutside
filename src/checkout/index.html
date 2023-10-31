@@ -10,7 +10,6 @@
 
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/checkout.js" type="module"></script>
-
   </head>
 
   <body>
@@ -23,55 +22,86 @@
       <div class="checkout-form">
         <form name="checkout">
           <fieldset>
-              <legend>Shipping Information</legend>
-              <label for="fname">First Name:</label>
-              <input type="text" id="fname" name="fname" required>
-  
-              <label for="lname">Last Name:</label>
-              <input type="text" id="lname" name="lname" required>
-  
-              <label for="street">Street:</label>
-              <input type="text" id="street" name="street" required>
-  
-              <label for="city">City:</label>
-              <input type="text" id="city" name="city" required>
-  
-              <label for="state">State:</label>
-              <input type="text" id="state" name="state" required>
-  
-              <label for="zip">Zip:</label>
-              <input type="text" id="zip" name="zip" required>
+            <legend>Shipping Information</legend>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required />
+
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" required />
+
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street" required />
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required />
+
+            <label for="zip">Zip:</label>
+            <input type="text" id="zip" name="zip" required />
           </fieldset>
-  
+
           <fieldset>
-              <legend>Payment Information</legend>
-              <label for="cardNumber">Card Number:</label>
-              <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{4} \d{4} \d{4} \d{4}" placeholder="xxxx xxxx xxxx xxxx">
-  
-              <label for="expiration">Expiration Date:</label>
-              <input type="text" id="expiration" name="expiration" required placeholder="MM/YY">
-  
-              <label for="code">Security Code:</label>
-              <input type="password" id="code" name="code" required>
+            <legend>Payment Information</legend>
+            <label for="cardNumber">Card Number:</label>
+            <input
+              type="text"
+              id="cardNumber"
+              name="cardNumber"
+              required
+              pattern="\d{4} \d{4} \d{4} \d{4}"
+              placeholder="xxxx xxxx xxxx xxxx"
+            />
+
+            <label for="expiration">Expiration Date:</label>
+            <input
+              type="text"
+              id="expiration"
+              name="expiration"
+              required
+              placeholder="MM/YY"
+            />
+
+            <label for="code">Security Code:</label>
+            <input type="password" id="code" name="code" required />
           </fieldset>
-  
+
           <fieldset>
-              <legend>Order Summary</legend>
-              <label for="subtotal">Item Subtotal:</label>
-              <input type="text" class="noinput" id="subtotal" name="subtotal" readonly>
-  
-              <label for="shipping">Shipping Estimate:</label>
-              <input type="text" class="noinput" id="shipping" name="shipping" readonly>
-  
-              <label for="tax">Tax:</label>
-              <input type="text" class="noinput" id="tax" name="tax" readonly>
-  
-              <label for="orderTotal">Order Total:</label>
-              <input type="text" class="noinput" id="orderTotal" name="orderTotal" readonly>
+            <legend>Order Summary</legend>
+            <label for="subtotal">Item Subtotal:</label>
+            <input
+              type="text"
+              class="noinput"
+              id="subtotal"
+              name="subtotal"
+              readonly
+            />
+
+            <label for="shipping">Shipping Estimate:</label>
+            <input
+              type="text"
+              class="noinput"
+              id="shipping"
+              name="shipping"
+              readonly
+            />
+
+            <label for="tax">Tax:</label>
+            <input type="text" class="noinput" id="tax" name="tax" readonly />
+
+            <label for="orderTotal">Order Total:</label>
+            <input
+              type="text"
+              class="noinput"
+              id="orderTotal"
+              name="orderTotal"
+              readonly
+            />
           </fieldset>
-  
-          <input type="submit" value="Submit">
-      </form>
+
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     </main>
 
