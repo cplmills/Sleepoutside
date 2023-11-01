@@ -7,7 +7,7 @@ function renderCartContents() {
     // if there are no items in the cart
     const emptyCartMessage = document.querySelector(".cart-heading");
     emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
-  } 
+  }
   if (cartItems.length >= 0) {
     const htmlItems = cartItems.map((item, index) =>
       cartItemTemplate(item, index)
@@ -113,7 +113,9 @@ function addToCart(item) {
   const cartItems = getLocalStorage("so-cart") || [];
 
   // Check if the item is already in the cart
-  const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
+  const existingItemIndex = cartItems.findIndex(
+    (cartItem) => cartItem.id === item.id
+  );
 
   if (existingItemIndex !== -1) {
     // If the item is already in the cart, increment its quantity
@@ -127,8 +129,8 @@ function addToCart(item) {
   // Update the cart in local storage
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
-checkCartItems();
-loadHeaderFooter();
+  checkCartItems();
+  loadHeaderFooter();
 }
 
 function checkCartItems() {
