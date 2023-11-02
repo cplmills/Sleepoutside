@@ -66,42 +66,24 @@
             <label for="code">Security Code:</label>
             <input type="password" id="code" name="code" required />
           </fieldset>
-
-          <fieldset>
-            <legend>Order Summary</legend>
-            <label for="subtotal">Item Subtotal:</label>
-            <input
-              type="text"
-              class="noinput"
-              id="subtotal"
-              name="subtotal"
-              readonly
-            />
-
-            <label for="shipping">Shipping Estimate:</label>
-            <input
-              type="text"
-              class="noinput"
-              id="shipping"
-              name="shipping"
-              readonly
-            />
-
-            <label for="tax">Tax:</label>
-            <input type="text" class="noinput" id="tax" name="tax" readonly />
-
-            <label for="orderTotal">Order Total:</label>
-            <input
-              type="text"
-              class="noinput"
-              id="orderTotal"
-              name="orderTotal"
-              readonly
-            />
+  
+          <fieldset id="fs_payment">
+              <legend>Order Summary</legend>
+              <label for="subtotal">Item Subtotal:</label>
+              <input type="text" class="noinput" id="subtotal" name="subtotal" readonly>
+  
+              <label for="shipping">Shipping Estimate:</label>
+              <input type="text" class="noinput" id="shipping" name="shipping" readonly>
+  
+              <label for="tax">Tax:</label>
+              <input type="text" class="noinput" id="tax" name="tax" readonly>
+  
+              <label for="orderTotal">Order Total:</label>
+              <input type="text" class="noinput" id="orderTotal" name="orderTotal" readonly>
           </fieldset>
-
-          <input type="submit" value="Submit" />
-        </form>
+  
+          <input type="submit" value="Checkout" id="checkout">
+      </form>
       </div>
     </main>
 

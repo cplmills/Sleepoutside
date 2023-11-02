@@ -69,7 +69,7 @@ const checkoutProcess = {
     let lsItems = getLocalStorage("so-cart");
     let itemCount = lsItems.length;
     this.shipping = 10 + (Math.max(itemCount - 1, 0) * 2);
-    this.tax = (this.orderTotal * 0.06).toFixed(2);
+    this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (parseFloat(this.itemTotal) + parseFloat(this.shipping) + parseFloat(this.tax)).toFixed(2);
     // display the totals.
     this.displayOrderTotals();
@@ -82,10 +82,10 @@ const checkoutProcess = {
     let f_tax = document.getElementById("tax");
     let f_orderTotal = document.getElementById("orderTotal");
 
-    f_subtotal.innerHTML = this.orderTotal;
-    f_shipping.innerHTML = this.shipping;
-    f_tax.innerHTML = this.tax;
-    f_orderTotal.innerHTML = this.orderTotal;
+    f_subtotal.setAttribute("value", '$' + this.orderTotal);
+    f_shipping.setAttribute("value", '$' + this.shipping);
+    f_tax.setAttribute("value", '$' + this.tax);
+    f_orderTotal.setAttribute("value", '$' + this.orderTotal);
   },
 
   checkout: async function (form) {
