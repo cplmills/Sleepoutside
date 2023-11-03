@@ -278,6 +278,25 @@ button {
   display: none;
 }
 
+/* validation style starts here */
+.alert {
+  background-color: #f0a868;
+  border: 1px solid #f58625;
+  display: grid;
+  grid-template-columns: 0.99fr 0.1fr;
+  padding: 0;
+  padding-left: 0.5em;
+  width: 50%;
+}
+
+.alert > .alertClose {
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 3em;
+}
+
+/* validation style ends here */
+
 /* news letter styles starts here */
 .news-letter-container {
   transition: opacity 1s ease-in-out;
@@ -407,7 +426,7 @@ input:valid {
 
 #checkout {
   font-size: 1.2rem;
-  padding: .5rem;
+  padding: 0.5rem;
   margin-top: 0.1rem;
   margin-bottom: 1rem;
   background-color: #f0a868;

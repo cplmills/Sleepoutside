@@ -3,7 +3,7 @@ function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Bad Response");
+    throw { name: 'servicesError', message: res.JSON };
   }
 }
 
@@ -31,6 +31,7 @@ export async function checkout(payload) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "authentication": "1234",
     },
     body: JSON.stringify(payload),
   };
