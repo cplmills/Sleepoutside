@@ -89,7 +89,8 @@ const checkoutProcess = {
   },
 
   checkout: async function (form) {
-    const json = formDataToJSON(form);
+    try {
+      const json = formDataToJSON(form);
     // add totals, and item details
     json.orderDate = new Date();
     json.orderTotal = this.orderTotal;
@@ -99,9 +100,17 @@ const checkoutProcess = {
     try {
       const res = await checkout(json);
       console.log(res);
+      if (res.ok){
+        localStorage.removeItem('so-cart');
+        window.location.pathname = "success.html";
+      }
     } catch (err) {
       console.log(err);
     }
+    } catch (err) {
+
+    }
+    
   }
 }
 
