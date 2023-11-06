@@ -22,16 +22,36 @@
       </section>
 
       <section class="products">
-        <label for="sort-list">Sort List By:</label>
-        <select name="sort-list" id="sort-list">
-          <option id="sort-default" value="sort-default"></option>
-          <option value="price-ascend">Price: Ascending</option>
-          <option value="price-descend">Price: Descending</option>
-          <option value="brand-alphabetical-ascend">Brand: A-Z</option>
-          <option value="brand-alphabetical-descend">Brand: Z-A</option>
-        </select>
-
+        
+        <!-- <button class="quick-view-button">Quick View</button> -->
+        <div class="modal" id="quick-view-modal">
+          <div class="modal-content">
+            <span class="close-modal-button">&times;</span>
+            <div class="modal-details">
+              <h2 class="product_name"></h2>
+              <h3 class="product_brand"></h3>
+              <p class="product_color"></p>
+              <p class="product_description"></p>
+            </div>
+            <label for="sort-list">Sort List By:</label>
+            <select name="sort-list" id="sort-list">
+              <option id="sort-default" value="sort-default"></option>
+              <option value="price-ascend">Price: Ascending</option>
+              <option value="price-descend">Price: Descending</option>
+              <option value="brand-alphabetical-ascend">Brand: A-Z</option>
+              <option value="brand-alphabetical-descend">Brand: Z-A</option>
+            </select>
+              <!-- Close button for the modal -->
+              <span class="close-modal-button">&times;</span>
+          </div>
+      </div>
         <h2 id="topProducts">Top Products</h2>
+        <!-- <div class="modal-details">
+          <h2 class="product_name"></h2>
+          <h3 class="product_brand"></h3>
+          <p class="product_color"></p>
+          <p class="product_description"></p>
+        </div> -->
         <ul class="product-list"></ul>
       </section>
     </main>

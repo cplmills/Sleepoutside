@@ -12,6 +12,8 @@ function productCardTemplate(product) {
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p></a
     >
+    <button class="quick-view-button" data-product-id="${product.Id}">Quick View</button>
+    
   </li>`;
 }
 
@@ -23,5 +25,48 @@ export default async function productList(selector, category) {
     const Allproducts = await getData(category);
     console.log(Allproducts);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
+    attachQuickViewEventListeners(Allproducts);
     
+      
+  };
+    
+
+function openQuickView(product) {
+  // Assuming there is a modal in the HTML with the id 'quick-view-modal'
+  const modal = document.getElementById('quick-view-modal');
+  modal.querySelector('.product_name').textContent = product.NameWithoutBrand;
+  modal.querySelector('.product_brand').textContent = product.Brand.Name;
+  // Add other details like product.Color, product.Description, etc.
+  modal.style.display = 'block';
 }
+function closeQuickView() {
+  const modal = document.getElementById('quick-view-modal');
+  modal.style.display = 'none';
+}
+
+// Close the modal when clicking outside the modal content
+window.addEventListener("click", (event) => {
+  const modal = document.getElementById('quick-view-modal');
+  if (event.target === modal) {
+      modal.style.display = "none"; // Hide the modal
+  }
+});
+// Close the modal using the close button
+document.addEventListener("DOMContentLoaded", () => {
+  const closeModalButton = document.querySelector(".close-modal-button");
+  closeModalButton.addEventListener("click", closeQuickView);
+});
+function attachQuickViewEventListeners(Allproducts) {
+  const quickViewButtons = document.querySelectorAll(".quick-view-button");
+  quickViewButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+          const productId = btn.getAttribute('data-product-id');
+          const product = Allproducts.find(p => p.Id === productId);
+          if (product) {
+              openQuickView(product);
+          }
+      });
+  });
+}
+
+       

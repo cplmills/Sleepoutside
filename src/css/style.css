@@ -355,3 +355,7 @@ input:valid {
   display: flex;
   justify-content: center;
 }
+
+.modal-details{
+  display: none;
+}
