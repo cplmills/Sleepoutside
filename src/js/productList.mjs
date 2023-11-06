@@ -34,6 +34,7 @@ export default async function productList(selector, category) {
 function openQuickView(product) {
   // Assuming there is a modal in the HTML with the id 'quick-view-modal'
   const modal = document.getElementById('quick-view-modal');
+  console.log(modal.querySelector('.product_name'));
   modal.querySelector('.product_name').textContent = product.NameWithoutBrand;
   modal.querySelector('.product_brand').textContent = product.Brand.Name;
   // Add other details like product.Color, product.Description, etc.
@@ -60,8 +61,11 @@ function attachQuickViewEventListeners(Allproducts) {
   const quickViewButtons = document.querySelectorAll(".quick-view-button");
   quickViewButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
+        // console.log('quick view btn');
           const productId = btn.getAttribute('data-product-id');
+          // console.log(productId);
           const product = Allproducts.find(p => p.Id === productId);
+          // console.log(product);
           if (product) {
               openQuickView(product);
           }
