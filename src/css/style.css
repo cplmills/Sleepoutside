@@ -238,6 +238,39 @@ button {
   padding-bottom: 1.5rem;
 }
 
+/* Search box styles */
+#search-box {
+  position: relative;
+  padding-top: 1em;
+  padding-left: 20em;
+}
+
+#searchForm {
+  display: grid;
+  grid-template-columns: .99fr .1fr;
+}
+
+#searchBar {
+  background-color: #eee;
+  border: 1px solid #555;
+  height: 36px;
+}
+
+#searchBtn {
+  cursor: pointer;
+  border: 1px solid #555;
+  background-color: #eee;
+  align-self: center;
+  margin-left: .5em;
+  height: 36px;
+}
+
+#searchBtn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* End of Search box styles */
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;

@@ -69,6 +69,7 @@ export async function loadHeaderFooter(){
   
   headerTag.innerHTML = await headerTemplateFn();
   footerTag.innerHTML = await footerTemplateFn();
+  searchBar();
   showCartCount();
 }
 
@@ -171,6 +172,34 @@ export function listSort(list){
       window.scrollTo(0,0);
   
   }
+
+  export function searchBar(){
+    const user_search = document.querySelector('#searchBar');
+    const searchForm = document.forms.searchForm;
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      sessionStorage.setItem('userSearch', true);
+      sessionStorage.setItem('userSearchKey', user_search.value);
+      window.location.href = `/product-list/index.html?search=${user_search.value}`;
+    })
+
+  }
+
+  export function searchResults(){
+    if (sessionStorage.getItem('userSearch') === 'true') {
+      const userKeyWord = sessionStorage.getItem('userSearchKey').toString();
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach(item => {
+        const nameWithoutBrand = item.querySelector('.card__name').textContent;
+        const nameBrand = item.querySelector('.card__brand').textContent;
+
+        if (!item.textContent.includes(userKeyWord)) {
+          item.remove();
+          sessionStorage.clear();
+        }
+      })
+  }
+}
 
   
 

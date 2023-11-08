@@ -8,11 +8,29 @@ function convertToJson(res) {
 }
 
 export async function getProductsByCategory(category) {
-  const response = await fetch(baseURL + `/products/search/${category}`);
-  const data = await convertToJson(response);
-  return data.Result;
-  
+  if (sessionStorage.getItem('userSearch') === 'true') {
+    let tents_request = await fetch(baseURL + `/products/search/tents`);
+    let sleeping_bags_request = await fetch(baseURL + `/products/search/sleeping-bags`);
+    let backpacks_request = await fetch(baseURL + `/products/search/backpacks`);
+    let hammocks_request = await fetch(baseURL + `/products/search/hammocks`);
+
+    let tents = await convertToJson(tents_request);
+    let sleeping_bags = await convertToJson(sleeping_bags_request);
+    let backpacks = await convertToJson(backpacks_request);
+    let hammocks = await convertToJson(hammocks_request);
+
+    const combinedArray = [...tents.Result, ...sleeping_bags.Result, ...backpacks.Result, ...hammocks.Result];
+
+    return combinedArray;
+
+  } else {
+    const response = await fetch(baseURL + `/products/search/${category}`);
+    const data = await convertToJson(response);
+    return data.Result;
+  }
+
 }
+
 
 export async function getProductById(id) {
   const response = await fetch(baseURL + `/product/${id}`);
