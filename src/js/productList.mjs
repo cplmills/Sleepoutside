@@ -1,8 +1,7 @@
 import { getProductsByCategory } from "./externalServices.mjs";
-import { renderListWithTemplate, listSort, sortProduct } from "./utils.mjs";
+import { renderListWithTemplate, listSort, sortProduct, searchResults } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  console.log(product);
     return `<li class="product-card">
     <a href="../product_pages/index.html?product=${product.Id}">
       <picture>
@@ -23,10 +22,15 @@ function productCardTemplate(product) {
 export default async function productList(selector, category) { 
     const element = document.querySelector(selector);
     const newTitle = document.getElementById("topProducts");
-    newTitle.innerText = "Top Products: "+category.charAt(0).toUpperCase() + category.slice(1);
+    if (sessionStorage.getItem('userSearch') === 'true') {
+      newTitle.innerText = "Search Product: "+category.charAt(0).toUpperCase() + category.slice(1);
+    } else {
+      newTitle.innerText = "Top Products: "+category.charAt(0).toUpperCase() + category.slice(1);
+    }
     const Allproducts = await getProductsByCategory(category);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
     sortProduct(productCardTemplate, selector, Allproducts, "afterbegin", false);
+    searchResults();
 }
 
 export function createBreadcrumbs(breadcrumbsArray) {
