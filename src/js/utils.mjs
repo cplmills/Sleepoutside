@@ -175,11 +175,12 @@ export function listSort(list){
 
   export function searchBar(){
     const user_search = document.querySelector('#searchBar');
+    // const modified_search = totitleCase(user_search.value);
     const searchForm = document.forms.searchForm;
     searchForm.addEventListener("submit", (event) => {
       event.preventDefault();
       sessionStorage.setItem('userSearch', true);
-      sessionStorage.setItem('userSearchKey', user_search.value);
+      sessionStorage.setItem('userSearchKey', totitleCase(user_search.value));
       window.location.href = `/product-list/index.html?search=${user_search.value}`;
     })
 
@@ -189,16 +190,26 @@ export function listSort(list){
     if (sessionStorage.getItem('userSearch') === 'true') {
       const userKeyWord = sessionStorage.getItem('userSearchKey').toString();
       const productCards = document.querySelectorAll('.product-card');
+      const sort_list = document.querySelector('#sort-list');
+      const sort_label = document.querySelector('#sort-label');
       productCards.forEach(item => {
-        const nameWithoutBrand = item.querySelector('.card__name').textContent;
-        const nameBrand = item.querySelector('.card__brand').textContent;
-
+      
         if (!item.textContent.includes(userKeyWord)) {
           item.remove();
           sessionStorage.clear();
         }
+      
+      sort_list.style.display = "none";
+      sort_label.style.display = "none";
+      
       })
   }
+}
+
+function totitleCase(str){
+  return str.replace(/\b\w/g, function (match) {
+    return match.toUpperCase();
+  });
 }
 
   

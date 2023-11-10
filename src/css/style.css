@@ -247,7 +247,7 @@ button {
 
 #searchForm {
   display: grid;
-  grid-template-columns: .99fr .1fr;
+  grid-template-columns: 0.99fr 0.1fr;
 }
 
 #searchBar {
@@ -261,7 +261,7 @@ button {
   border: 1px solid #555;
   background-color: #eee;
   align-self: center;
-  margin-left: .5em;
+  margin-left: 0.5em;
   height: 36px;
 }
 
