@@ -76,10 +76,11 @@ function renderProductDetails(myProductDetails) {
   if (myProductDetails.ListPrice > 300) {
     discountPercentage = 0.05;
     saleBanner.innerText = "5% SALE";
+    pictureDiv.appendChild(saleBanner);
   } else if (myProductDetails.ListPrice >150) {
     discountPercentage = 0.03;
     saleBanner.innerText = "3% SALE";
-
+    pictureDiv.appendChild(saleBanner);
   }
   const discountPrice = myProductDetails.ListPrice * discountPercentage;
   let discountElement = document.createElement("p");
@@ -108,7 +109,6 @@ function renderProductDetails(myProductDetails) {
   newButton.innerText = "Add To Cart";
   newButton.addEventListener("click", addToCartHandler);
 
-  pictureDiv.appendChild(saleBanner);
   pictureDiv.appendChild(newPicture);
   
   newSection.append(newH3);
