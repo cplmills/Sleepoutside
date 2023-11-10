@@ -247,7 +247,7 @@ button {
 
 #searchForm {
   display: grid;
-  grid-template-columns: .99fr .1fr;
+  grid-template-columns: 0.99fr 0.1fr;
 }
 
 #searchBar {
@@ -261,7 +261,7 @@ button {
   border: 1px solid #555;
   background-color: #eee;
   align-self: center;
-  margin-left: .5em;
+  margin-left: 0.5em;
   height: 36px;
 }
 
@@ -379,6 +379,50 @@ button {
   background-color: #eee;
 }
 /* news letter styles ends here */
+
+/* giveaway style starts here */
+.giveaway-container {
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: grid;
+  grid-template-columns: 0.5fr [content-start] 1fr [content-end] 0.5fr;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  opacity: 100%;
+}
+
+.first-visit-message-box {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  color: #eee;
+  grid-column: content;
+  text-align: center;
+  align-items: center;
+}
+
+#giveaway-close {
+  cursor: pointer;
+  position: relative;
+  left: 30vw;
+}
+
+#giveawayBtn {
+  outline: 1px solid rgb(255, 255, 255);
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: #f0a868;
+  font-size: 24px;
+  font-weight: bold;
+  height: 50px;
+  width: 50%;
+}
+
+/* giveaway style ends here */
 
 @media screen and (min-width: 500px) {
   body {
