@@ -49,10 +49,8 @@ export async function checkout(payload) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "authentication": "1234",
     },
     body: JSON.stringify(payload),
   };
-  console.log("fetching data...");
-  return await fetch(baseURL + "/checkout/", options).then(convertToJson);
+  return await fetch(baseURL + "checkout/", options).then(convertToJson);
 }
