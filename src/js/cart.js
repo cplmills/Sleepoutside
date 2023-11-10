@@ -7,8 +7,8 @@ function renderCartContents() {
     // if there are no items in the cart
     const emptyCartMessage = document.querySelector(".cart-heading");
     emptyCartMessage.innerHTML = "My Cart - You Have No Items In Your Cart";
-    // document.getElementsByTagName("main")[0].appendChild(emptyCartMessage);
-  } else {
+  } 
+  if (cartItems.length >= 0) {
     const htmlItems = cartItems.map((item, index) =>
       cartItemTemplate(item, index)
     );
@@ -78,8 +78,9 @@ function showTotalContents(items) {
   console.log(window.location.href.indexOf("cart.html"));
   //ensure this only runs on the cart page
   // if (window.location.href.indexOf("cart.html") > 0) {
-  if(items.length> 0){
-    console.log(items);
+  // if(items.length> 0){
+  //   console.log(items);
+  if (window.location.href.indexOf("cart/index.html") > 0) {
     items.forEach((item) => {
       let discountPercentage = 0;
       if (item.ListPrice > 300) {
@@ -99,6 +100,8 @@ function showTotalContents(items) {
       // document.querySelector(".cart-footer .hide").style.display = "unset";
 
       const itemPricesList = items.map((item) => item.discountedPrice*item.quantity);
+      document.querySelector(".cart-footer").style.display = "unset";
+      // const itemPricesList = items.map((item) => item.discountedPrice);
 
       const priceTotal = itemPricesList.reduce(
         (item, currentTotal) => item + currentTotal,
@@ -115,6 +118,28 @@ function showTotalContents(items) {
     }
   }
   showTotalContents();
+}
+function addToCart(item) {
+  // Retrieve the current cart from local storage
+  const cartItems = getLocalStorage("so-cart") || [];
+
+  // Check if the item is already in the cart
+  const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
+
+  if (existingItemIndex !== -1) {
+    // If the item is already in the cart, increment its quantity
+    cartItems[existingItemIndex].quantity += 1;
+  } else {
+    // If the item is not in the cart, add it with a quantity of 1
+    item.quantity = 1;
+    cartItems.push(item);
+  }
+
+  // Update the cart in local storage
+  setLocalStorage("so-cart", cartItems);
+  renderCartContents();
+checkCartItems();
+loadHeaderFooter();
 }
 
 function checkCartItems() {

@@ -146,33 +146,36 @@ button {
   border-bottom: 2px solid #f0a868;
 }
 
-.breadcrumb, #breadcrumbol {
+#breadcrumbs {
   list-style: none;
   padding: 10px;
   margin: 0px;
   
 }
 
-#breadcrumbol>li {
+#breadcrumbs>li {
   display: inline-block;
   padding: 10px,0,10px,0;
+    /* padding: 10px,0,10px,0; */
+
 }
 
-#breadcrumbol>li+li:before {
+#breadcrumbs>li+li:before {
   padding: 0 5px;
   color: #f0a868;
   content: "/\00a0";
 }
 
-#breadcrumbol>li>a {
+#breadcrumbs>li>a {
   text-decoration: none;
   color: #414141;
 }
 
-#breadcrumbol>li>a:hover {
+#breadcrumbs>li>a:hover {
   text-decoration: underline;
   color: #f0a868;
 }
+
 #activeBreadcrumb{
   color: Orange!important;
 }
@@ -320,6 +323,8 @@ footer {
   transition-duration: 1.5s;
 }
 /* Start checkout form styles */
+
+
 fieldset {
   border: 1px solid #ccc;
   padding: 10px;

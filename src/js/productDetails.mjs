@@ -1,12 +1,11 @@
-import { findProductById } from "./productData.mjs";
+import { getProductById } from "./externalServices.mjs";
 import { getLocalStorage, setLocalStorage, showCartCount } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 export default async function productDetails(productId) {
   try {
-    const myProductDetails = await findProductById(productId);
+    const myProductDetails = await getProductById(productId);
     renderProductDetails(myProductDetails);
-    console.log("now here");
 
   // add listener to Add to Cart button
   document
@@ -45,6 +44,8 @@ async function addToCartHandler(e) {
     addProductToCart(product);
   }
   
+  // const product = await getProductById(e.target.dataset.id);
+  // addProductToCart(product);
   animateLogo();
 }
 
