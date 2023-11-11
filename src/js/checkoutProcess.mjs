@@ -38,81 +38,63 @@ const checkoutProcess = {
   tax: 0,
   orderTotal: 0,
   init: function (key, outputSelector) {
-      this.key = key;
-      this.outputSelector = outputSelector;
-      this.list = getLocalStorage(key);
-      this.calculateItemSummary();
+    this.key = key;
+    this.outputSelector = outputSelector;
+    this.list = getLocalStorage(key);
+    this.calculateItemSummary();
   },
-
-  calculateItemSummary: function() {
-    // calculate and display the total amount of the items in the cart, and the number of items.
-   // Initialize a variable to store the total price
-    let totalPrice = 0;
-
-    // get the items from LocalStorage
-    const cartItems = JSON.parse(localStorage.getItem("so-cart"));
-
-    // Check if there are items in the cart
-    if (cartItems) {
-        // Loop through each item in the cart
-        for (const item of cartItems) {
-            if (item.hasOwnProperty("FinalPrice")) {
-                totalPrice += parseFloat(item.FinalPrice);
-            }
-        }
-    }
-    this.itemTotal = totalPrice;   
+  calculateItemSummary: function () {
+    const summaryElement = document.querySelector(
+      this.outputSelector + " #cartTotal"
+    );
+    const itemNumElement = document.querySelector(
+      this.outputSelector + " #num-items"
+    );
+    console.log(itemNumElement);
+    itemNumElement.innerText = this.list.length;
+    // calculate the total of all the items in the cart
+    const amounts = this.list.map((item) => item.FinalPrice);
+    this.itemTotal = amounts.reduce((sum, item) => sum + item);
+    summaryElement.innerText = "$" + this.itemTotal;
   },
-
-  calculateOrdertotal: function() {
-    // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
-    let lsItems = getLocalStorage("so-cart");
-    let itemCount = lsItems.length;
-    this.shipping = 10 + (Math.max(itemCount - 1, 0) * 2);
+  calculateOrdertotal: function () {
+    this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
-    this.orderTotal = (parseFloat(this.itemTotal) + parseFloat(this.shipping) + parseFloat(this.tax)).toFixed(2);
-    // display the totals.
+    this.orderTotal = (
+      parseFloat(this.itemTotal) +
+      parseFloat(this.shipping) +
+      parseFloat(this.tax)
+    ).toFixed(2);
     this.displayOrderTotals();
   },
-
-  displayOrderTotals: function() {
-    // once the totals are all calculated display them in the order summary page
-    let f_subtotal = document.getElementById("subtotal");
-    let f_shipping = document.getElementById("shipping");
-    let f_tax = document.getElementById("tax");
-    let f_orderTotal = document.getElementById("orderTotal");
-
-    f_subtotal.setAttribute("value", '$' + this.orderTotal);
-    f_shipping.setAttribute("value", '$' + this.shipping);
-    f_tax.setAttribute("value", '$' + this.tax);
-    f_orderTotal.setAttribute("value", '$' + this.orderTotal);
+  displayOrderTotals: function () {
+    const shipping = document.querySelector(this.outputSelector + " #shipping");
+    const tax = document.querySelector(this.outputSelector + " #tax");
+    const orderTotal = document.querySelector(
+      this.outputSelector + " #orderTotal"
+    );
+    shipping.innerText = "$" + this.shipping;
+    tax.innerText = "$" + this.tax;
+    orderTotal.innerText = "$" + this.orderTotal;
   },
-
   checkout: async function (form) {
-    try {
-      const json = formDataToJSON(form);
+    const json = formDataToJSON(form);
     // add totals, and item details
     json.orderDate = new Date();
     json.orderTotal = this.orderTotal;
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
+    console.log(json);
     try {
       const res = await checkout(json);
       console.log(res);
-      if (res.ok){
-        localStorage.removeItem('so-cart');
-        window.location.pathname = "success.html";
-      }
     } catch (err) {
       console.log(err);
     }
-    } catch (err) {
+  },
+};
 
-    }
-    
-  }
-}
 
 export default checkoutProcess;
 

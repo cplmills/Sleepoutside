@@ -69,6 +69,7 @@ export async function loadHeaderFooter(){
   
   headerTag.innerHTML = await headerTemplateFn();
   footerTag.innerHTML = await footerTemplateFn();
+  giveawayMessage();
   searchBar();
   showCartCount();
 }
@@ -211,6 +212,27 @@ function totitleCase(str){
     return match.toUpperCase();
   });
 }
+async function giveawayMessage(){
+    const giveaway = document.querySelector('.giveaway-container');
+    const giveawayTemplateFn = loadTemplate("/partials/giveaway.html");
+    const giveawayContainer = document.querySelector('.giveaway-container');
+
+    giveaway.innerHTML = await giveawayTemplateFn();
+
+    const closeGiveaway = document.querySelector('#giveaway-close');
+  
+  closeGiveaway.addEventListener('click', () => {
+    giveawayContainer.style.opacity = "0%";
+    giveawayContainer.style.pointerEvents = "none";
+  })
+  if (localStorage.getItem('visitTrack')){
+    let visitNumber = localStorage.getItem('visitTrack');
+    localStorage.setItem('visitTrack', (parseFloat(visitNumber) + 1));
+    giveawayContainer.style.display = "none";
+  } else {
+    localStorage.setItem('visitTrack', 1);
+  }
+ }
 
   
 

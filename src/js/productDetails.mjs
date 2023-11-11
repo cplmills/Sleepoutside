@@ -45,17 +45,17 @@ function renderProductDetails(myProductDetails) {
   newH2.className = "divider";
   newH2.innerHTML = myProductDetails.NameWithoutBrand;
 
+  let pictureDiv = document.createElement("div");
+  let saleBanner = document.createElement("p");
   let newPicture = document.createElement("picture");
   let newSmallSource = document.createElement("source");
   newSmallSource.setAttribute("srcset", myProductDetails.Images.PrimarySmall);
   newSmallSource.setAttribute("media", "(max-width: 80px)");
-
+  saleBanner.setAttribute("class", "sale-overlay");
+  pictureDiv.setAttribute("class", "sale-banner-div");
   let newMediumSource = document.createElement("source");
   newMediumSource.setAttribute("srcset", myProductDetails.Images.PrimaryMedium);
   newMediumSource.setAttribute("media", "(max-width: 160px)");
-  
-  // let newLargeSource = document.createElement("source");
-  // newLargeSource.setAttribute("srcset", myProductDetails.Images.PrimaryLarge); 
 
   let newImg = document.createElement("img");
   newImg.className = "divider";
@@ -64,36 +64,37 @@ function renderProductDetails(myProductDetails) {
 
   newPicture.appendChild(newSmallSource);
   newPicture.appendChild(newMediumSource);
-  // newPicture.appendChild(newLargeSource);
   newPicture.appendChild(newImg);
 
   let newPrice = document.createElement("p");
   newPrice.className = "product-card__price";
-  newPrice.innerHTML = myProductDetails.ListPrice;
+  newPrice.innerHTML = "RRP $ " + myProductDetails.ListPrice;
 
   //Calculate and display discount price
   
-  // let discountPrice = myProductDetails.ListPrice - myProductDetails.FinalPrice;
-  let discountPercentage;
+  let discountPercentage = 0;
   if (myProductDetails.ListPrice > 300) {
     discountPercentage = 0.05;
+    saleBanner.innerText = "5% SALE";
+    pictureDiv.appendChild(saleBanner);
   } else if (myProductDetails.ListPrice >150) {
     discountPercentage = 0.03;
+    saleBanner.innerText = "3% SALE";
+    pictureDiv.appendChild(saleBanner);
   }
   const discountPrice = myProductDetails.ListPrice * discountPercentage;
   let discountElement = document.createElement("p");
   discountElement.className = "product__discount";
-  discountElement.innerHTML = `Save $${discountPrice.toFixed(2)}`;
+  discountElement.innerHTML = `Save $ ${discountPrice.toFixed(2)}<P>You Pay: $ ${(myProductDetails.ListPrice-discountPrice).toFixed(2)}`;
   // Calculate and display discount percentage
 
-  // let discountPercentage = (discountPrice / myProductDetails.ListPrice) * 100;
   let discountPercentageElement = document.createElement("p");
   discountPercentageElement.className = "product__discount-percentage";
   discountPercentageElement.innerHTML = `Discount: ${discountPercentage*100}%`;
 
   let newColor = document.createElement("p");
   newColor.className = "product__color";
-  newColor.innerHTML = myProductDetails.Colors[0].ColorName;
+  newColor.innerHTML = "Color: " + myProductDetails.Colors[0].ColorName;
 
   let newDescription = document.createElement("p");
   newDescription.className = "product__description";
@@ -108,12 +109,17 @@ function renderProductDetails(myProductDetails) {
   newButton.innerText = "Add To Cart";
   newButton.addEventListener("click", addToCartHandler);
 
+  pictureDiv.appendChild(newPicture);
+  
   newSection.append(newH3);
   newSection.append(newH2);
-  newSection.append(newPicture);
+  newSection.append(pictureDiv);
   newSection.append(newPrice);
-  newSection.append(discountElement);
-  newSection.append(discountPercentageElement);
+  if (discountPercentage > 0) {
+    newSection.append(discountElement);
+    newSection.append(discountPercentageElement);
+
+  }
   newSection.append(newColor);
   newSection.append(newDescription);
 
