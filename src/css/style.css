@@ -227,6 +227,25 @@ button {
 }
 /* End product list card */
 
+.sale-banner-div {
+  position: relative;
+  overflow: hidden;
+}
+.sale-overlay {
+  position: absolute;
+  top: 1rem;
+  left: -3rem;
+  min-width: 200px;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: red;
+  transform: rotate(-45deg);
+  transform-origin: 0, 0;
+  white-space: nowrap;
+  color: white;
+  font-weight: bolder;
+  
+}
 .product-detail {
   padding: 1em;
   max-width: 500px;
