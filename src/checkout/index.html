@@ -43,61 +43,36 @@
           </fieldset>
 
           <fieldset>
-            <legend>Payment Information</legend>
-            <label for="cardNumber">Card Number:</label>
-            <input
-              type="text"
-              id="cardNumber"
-              name="cardNumber"
-              required
-              pattern="\d{4} \d{4} \d{4} \d{4}"
-              placeholder="xxxx xxxx xxxx xxxx"
-            />
-
-            <label for="expiration">Expiration Date:</label>
-            <input
-              type="text"
-              id="expiration"
-              name="expiration"
-              required
-              placeholder="MM/YY"
-            />
-
-            <label for="code">Security Code:</label>
-            <input type="password" id="code" name="code" required />
+            <legend>Payment</legend>
+            <label for="cardNumber">Card number</label>
+            <input name="cardNumber" required />
+            <label for="expiration">Expiration</label>
+            <input name="expiration" required />
+            <label for="code">Security Code</label>
+            <input name="code" required />
           </fieldset>
-
-          <fieldset id="fs_payment">
+          <fieldset class="checkout-summary">
             <legend>Order Summary</legend>
-            <label for="subtotal">Item Subtotal:</label>
-            <input
-              type="text"
-              class="noinput"
-              id="subtotal"
-              name="subtotal"
-              readonly
-            />
-
-            <label for="shipping">Shipping Estimate:</label>
-            <input
-              type="text"
-              class="noinput"
-              id="shipping"
-              name="shipping"
-              readonly
-            />
-
-            <label for="tax">Tax:</label>
-            <input type="text" class="noinput" id="tax" name="tax" readonly />
-
-            <label for="orderTotal">Order Total:</label>
-            <input
-              type="text"
-              class="noinput"
-              id="orderTotal"
-              name="orderTotal"
-              readonly
-            />
+            <ul>
+              <li>
+                <label for="cartTotal"
+                  >Item Subtotal(<span id="num-items"></span>)</label
+                >
+                <p name="cartTotal" id="cartTotal"></p>
+              </li>
+              <li>
+                <label for="shipping">Shipping Estimate</label>
+                <p id="shipping"></p>
+              </li>
+              <li>
+                <label for="tax">Tax</label>
+                <p id="tax"></p>
+              </li>
+              <li>
+                <label for="orderTotal"><b>Order Total</b></label>
+                <p id="orderTotal"></p>
+              </li>
+            </ul>
           </fieldset>
 
           <input type="submit" value="Checkout" id="checkout" />
