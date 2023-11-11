@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+let baseURL = import.meta.env.VITE_SERVER_URL;
 
 if (baseURL.slice(-1) !== '/') {
   baseURL += '/';
