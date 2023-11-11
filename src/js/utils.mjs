@@ -98,32 +98,32 @@ export function listSort(list){
       {
         list.sort(compareNameReverse);
         document.querySelector('#sort-default').style.display = "none";
-      }
-
-  function compareFunction(a, b) {
-    return a.FinalPrice - b.FinalPrice;
-  }
-  function compareFunctionReverse(a, b) {
-    return b.FinalPrice - a.FinalPrice;
-  }
-  function compareName(a, b){
-    let nameA = a.Brand.Name.toLowerCase();
-    let nameB = b.Brand.Name.toLowerCase();
-
-    if (nameA < nameB) return -1;
-    if (nameA > nameB) return 1;
-    if (nameA === nameB) return 0;
-  }
-  function compareNameReverse(a, b){
-    let nameA = a.Brand.Name.toLowerCase();
-    let nameB = b.Brand.Name.toLowerCase();
-
-    if (nameA > nameB) return -1;
-    if (nameA < nameB) return 1;
-    if (nameA === nameB) return 0;
-  }
-  return list;
     }
+  
+    function compareFunction(a, b) {
+      return a.FinalPrice - b.FinalPrice;
+    }
+    function compareFunctionReverse(a, b) {
+      return b.FinalPrice - a.FinalPrice;
+    }
+    function compareName(a, b){
+      let nameA = a.Brand.Name.toLowerCase();
+      let nameB = b.Brand.Name.toLowerCase();
+
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      if (nameA === nameB) return 0;
+    }
+    function compareNameReverse(a, b){
+      let nameA = a.Brand.Name.toLowerCase();
+      let nameB = b.Brand.Name.toLowerCase();
+
+      if (nameA > nameB) return -1;
+      if (nameA < nameB) return 1;
+      if (nameA === nameB) return 0;
+    }
+  return list;
+}
   
   export function sortProduct(templateFn, parentElement, data, position, boolValue) {
     const sortChoices = document.querySelector('#sort-list');
@@ -131,7 +131,7 @@ export function listSort(list){
       const products = document.querySelectorAll('.product-card');
       products.forEach(item => item.remove());
       renderListWithTemplate(templateFn, parentElement, listSort(data), position, boolValue);
-    })
+    });
   }
 
   // export function newsLetter() {
@@ -163,14 +163,15 @@ export function listSort(list){
         if(element.classList.contains('alertClose')) { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
           main.removeChild(this);
         }
-    })
+    });
     // add the alert to the top of main
     const main = document.querySelector('main');
     main.prepend(alert);
     // make sure they see the alert by scrolling to the top of the window
     //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
-    if(scroll)
+    if(scroll){
       window.scrollTo(0,0);
+    }
   
   }
 
@@ -183,7 +184,7 @@ export function listSort(list){
       sessionStorage.setItem('userSearch', true);
       sessionStorage.setItem('userSearchKey', totitleCase(user_search.value));
       window.location.href = `/product-list/index.html?search=${user_search.value}`;
-    })
+    });
 
   }
 
@@ -203,7 +204,7 @@ export function listSort(list){
       sort_list.style.display = "none";
       sort_label.style.display = "none";
       
-      })
+      });
   }
 }
 
@@ -224,7 +225,7 @@ async function giveawayMessage(){
   closeGiveaway.addEventListener('click', () => {
     giveawayContainer.style.opacity = "0%";
     giveawayContainer.style.pointerEvents = "none";
-  })
+  });
   if (localStorage.getItem('visitTrack')){
     let visitNumber = localStorage.getItem('visitTrack');
     localStorage.setItem('visitTrack', (parseFloat(visitNumber) + 1));

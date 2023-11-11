@@ -60,26 +60,29 @@ export async function checkout(payload) {
 }
 
 export async function loginRequest(creds){
+  console.log(creds);
   const options = {
+    mode: 'no-cors',
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(creds),
+    body: creds,
   };
-  const response =  await fetch(baseURL + "/login", options).then(convertToJson);
-  return response.Result;
+  console.log(baseURL + "login", options);
+  const response =  await fetch(baseURL + "login", options).then(convertToJson);
+  return response.accessToken;
+
 }
 
 export async function getOrders(token){
   const options = {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     } 
     
   };
-  const response =  await fetch(baseURL + "/orders", options).then(convertToJson);
-  return response.Result;
+  const response =  await fetch(baseURL + "orders", options).then(convertToJson);
+  return response;
 }
