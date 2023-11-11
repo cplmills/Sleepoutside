@@ -238,6 +238,7 @@ button {
 
 .product-detail img {
   width: 100%;
+  padding-bottom: 1.5rem;
 }
 
 /* Start cart list card styles */
@@ -279,6 +280,74 @@ button {
 .cart-footer.hide {
   display: none;
 }
+/* validation style starts here */
+.alert {
+  background-color: #f0a868;
+  border: 1px solid #f58625;
+  display: grid;
+  grid-template-columns: 0.99fr 0.1fr;
+  padding: 0;
+  padding-left: 0.5em;
+  width: 50%;
+}
+
+.alert > .alertClose {
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 3em;
+}
+
+/* validation style ends here */
+
+/* news letter styles starts here */
+.news-letter-container {
+  transition: opacity 1s ease-in-out;
+  color: #eee;
+  background-color: #555;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 30%;
+  opacity: 100%;
+}
+
+.news-letter-box {
+  padding: 0.5em;
+}
+
+.newsletter-heading {
+  display: grid;
+  grid-template-columns: 0.95fr 0.05fr;
+}
+
+.newsletter-heading h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#close {
+  opacity: 80%;
+  cursor: pointer;
+  position: relative;
+}
+
+.news-letter-box p {
+  font-size: 14px;
+}
+
+#newsletterEmail {
+  height: 2.5em;
+  width: 80%;
+  background-color: #eee;
+}
+
+#newsletterBtn {
+  cursor: pointer;
+  height: 2.5em;
+  background-color: #eee;
+}
+/* news letter styles ends here */
 
 @media screen and (min-width: 500px) {
   body {
@@ -302,9 +371,7 @@ footer {
   width: 60%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* 1 fraction for each column */
-  /*grid-template-rows: repeat(1fr);
-  /* 4 rows with 1 fraction each */
+  
   gap: 20px; /* Optional gap between grid items */
   background-color: #fff;
   padding: 20px;
@@ -360,7 +427,10 @@ input:valid {
   display: flex;
   justify-content: center;
 }
-
-/* .modal-details{
-  display: none;
-} */
+#checkout {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-top: 0.1rem;
+  margin-bottom: 1rem;
+  background-color: #f0a868;
+}

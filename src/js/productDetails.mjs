@@ -19,35 +19,12 @@ export default async function productDetails(productId) {
 }
 
 async function addToCartHandler(e) {
-  const product = await findProductById(e.target.dataset.id);
-  let cart_items;
-  console.log(product);
-  try{
-    cart_items =getLocalStorage("so-cart") || [];
-    if(!Array.isArray(cart_items)) cart_items = [cart_items];
-  }
-  catch(err){
-    cart_items= [];
-  }
-  
-  let matched_item;
-  for (let i = 0; i < cart_items.length; i++){
-    let item = cart_items[i];
-    if(item.Id == e.target.dataset.id) matched_item = i;
-  }
-  console.log(matched_item);
-  if(matched_item!=null){
-    ++cart_items[matched_item].quantity;
-    setLocalStorage("so-cart",cart_items);  
-  }else{
-    if(!product?.quantity) product.quantity = 1;
-    addProductToCart(product);
-  }
-  
-  // const product = await getProductById(e.target.dataset.id);
-  // addProductToCart(product);
+  const product = await getProductById(e.target.dataset.id);
+  addProductToCart(product);
   animateLogo();
 }
+  
+  
 
 function addProductToCart(product) {
   const cartData = getLocalStorage("so-cart") || [];
@@ -69,6 +46,16 @@ function renderProductDetails(myProductDetails) {
   let newH2 = document.createElement("h2");
   newH2.className = "divider";
   newH2.innerHTML = myProductDetails.NameWithoutBrand;
+
+  let newPicture = document.createElement("picture");
+  let newSmallSource = document.createElement("source");
+  newSmallSource.setAttribute("srcset", myProductDetails.Images.PrimarySmall);
+  newSmallSource.setAttribute("media", "(max-width: 80px)");
+
+  let newMediumSource = document.createElement("source");
+  newMediumSource.setAttribute("srcset", myProductDetails.Images.PrimaryMedium);
+  newMediumSource.setAttribute("media", "(max-width: 160px)");
+  
 
   let newImg = document.createElement("img");
   newImg.className = "divider";

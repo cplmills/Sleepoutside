@@ -4,10 +4,12 @@ import { renderListWithTemplate, listSort, sortProduct } from "./utils.mjs";
 function productCardTemplate(product) {
     return `<li class="product-card">
     <a href="../product_pages/index.html?product=${product.Id}">
-      <img
-        src="${product.Images.PrimarySmall}"
-        alt="Image of ${product.Name}"
-      />
+      <picture>
+        <source srcset="${product.Images.PrimarySmall}" media="(max-width: 80px)">
+        <source srcset="${product.Images.PrimaryMedium}" media="(max-width: 120px)">
+        <source srcset="${product.Images.PrimaryLarge}">
+        <img src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}">
+      </picture>
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p></a
@@ -24,6 +26,7 @@ export default async function productList(selector, category) {
     newTitle.innerText = "Top Products: "+category.charAt(0).toUpperCase() + category.slice(1);
     const Allproducts = await getProductsByCategory(category);
     renderListWithTemplate(productCardTemplate, selector, Allproducts, "afterbegin", false);
+    sortProduct(productCardTemplate, selector, Allproducts, "afterbegin", false);
     attachQuickViewEventListeners(Allproducts);
     
       
@@ -54,7 +57,10 @@ window.addEventListener("click", (event) => {
 // Close the modal using the close button
 document.addEventListener("DOMContentLoaded", () => {
   const closeModalButton = document.querySelector(".close-modal-button");
-  closeModalButton.addEventListener("click", closeQuickView);
+  if(closeModalButton){
+    closeModalButton.addEventListener("click", closeQuickView);
+  }
+  
 });
 function attachQuickViewEventListeners(Allproducts) {
   const quickViewButtons = document.querySelectorAll(".quick-view-button");
@@ -73,7 +79,7 @@ function attachQuickViewEventListeners(Allproducts) {
 }
 
        
-sortProduct(productCardTemplate, selector, Allproducts, "afterbegin", false);
+
 
 
 export function createBreadcrumbs(breadcrumbsArray) {
