@@ -134,13 +134,13 @@ export function listSort(list){
     })
   }
 
-  export function newsLetter() {
-    let closeBtn = document.querySelector('#close');
-    closeBtn.addEventListener('click', () => {
-      let newslettercontainer = document.querySelector('.news-letter-container')
-      newslettercontainer.style.opacity = "0%";
-    })
-  }
+  // export function newsLetter() {
+  //   let closeBtn = document.querySelector('#close');
+  //   closeBtn.addEventListener('click', () => {
+  //     let newslettercontainer = document.querySelector('.news-letter-container')
+  //     newslettercontainer.style.opacity = "0%";
+  //   })
+  // }
 
   export function alertMessage(message, scroll = true) {
     // create element to hold our alert

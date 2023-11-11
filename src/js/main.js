@@ -1,6 +1,6 @@
 //import productList from "./productList.mjs";
-import { loadHeaderFooter, newsLetter } from "./utils.mjs";
+import { loadHeaderFooter} from "./utils.mjs";
 
 //productList(".product-list", "tents");
 loadHeaderFooter();
-newsLetter();
+//newsLetter();
