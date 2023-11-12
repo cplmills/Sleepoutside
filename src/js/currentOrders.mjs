@@ -13,7 +13,6 @@ export default async function currentOrders(DOMSelector, token) {
     newTable.appendChild(tableHeader);
     
     orders.map((nextValue) => {
-        console.log(nextValue);
         let numericOrderTotal = parseFloat(nextValue.orderTotal);
         let newOrderItemTR = document.createElement("tr");
         newOrderItemTR.className = "itemTR";
