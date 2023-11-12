@@ -20,7 +20,6 @@ export async function login(creds, redirect = "/") {
 export function isTokenValid(token){
     if (token){
         const decode = jwtDecode(token);
-        const decode = jwtDecode(token);
         let currentDate = new Date();
         
         if (decode.exp * 1000 < currentDate.getTime()) {
