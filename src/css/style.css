@@ -526,3 +526,19 @@ input:valid {
   margin-bottom: 1rem;
   background-color: #f0a868;
 }
+
+.orderTable {
+  margin: auto;
+  margin-top: 1rem;
+  border: 1px Solid;
+  text-align: right;
+  padding: 0.5rem;
+}
+
+.orderTable td, tr {
+  padding: .3rem;
+}
+
+.orderTable tr:nth-child(odd) {
+  background-color: #d7f4d8;
+}
