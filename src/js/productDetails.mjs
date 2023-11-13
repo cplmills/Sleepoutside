@@ -26,8 +26,18 @@ async function addToCartHandler(e) {
 
 function addProductToCart(product) {
   const cartData = getLocalStorage("so-cart") || [];
-  cartData.push(product);
+  let check = false;
+  cartData.forEach(item=>{
+    if(item.Id==product.Id){
+      check = true;
+    }
+  })
+  if(!check){
+    cartData.push(product);
   setLocalStorage("so-cart", cartData);
+  }
+  // cartData.push(product);
+  // setLocalStorage("so-cart", cartData);
   showCartCount();
 }
 

@@ -33,9 +33,15 @@ function cartItemTemplate(item, index) {
   } else if (item.ListPrice > 150) {
     discountPercentage = 0.03;
   }
+
   const discountPrice = item.ListPrice * discountPercentage;
   const discountedPrice = item.ListPrice - discountPrice;
   item.discountedPrice = discountedPrice;
+  if(!item.quantity){
+    item.quantity = 1;
+  }
+  console.log(item.discountedPrice);
+  console.log(item.quantity);
   const newItem = `<li class="cart-card divider">
   <button class="remove-button" data-index="${index}" data-id="${
     item.id
@@ -51,10 +57,11 @@ function cartItemTemplate(item, index) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${discountedPrice.toFixed(2)}</p>
+  
   <input type="number" class="cart-card__quantity" data-index="${index}" value="${item.quantity}" min="1">
             <p class="cart-card__price">$${(item.discountedPrice * item.quantity).toFixed(2)}</p>
 </li>`;
+// {/* <p class="cart-card__price">$${discountedPrice.toFixed(2)}</p> */}
 
   return newItem;
 }
@@ -81,7 +88,9 @@ function showTotalContents(items) {
   //ensure this only runs on the cart page
   if (window.location.href.indexOf("cart/index.html") > 0) {
     items.forEach((item) => {
+      // console.log("85");
       let discountPercentage = 0;
+      // console.log(item.ListPrice);
       if (item.ListPrice > 300) {
         discountPercentage = 0.05;
       } else if (item.ListPrice > 150) {
@@ -90,17 +99,28 @@ function showTotalContents(items) {
       const discountPrice = item.ListPrice * discountPercentage;
       const discountedPrice = item.ListPrice - discountPrice;
       item.discountedPrice = discountedPrice;
+      if(!item.quantity){
+        item.quantity=1;
+      }
     });
-
+    let priceTotal = 0;
     if (items.length !== 0) {
       document.querySelector(".cart-footer").style.display = "unset";
-      const itemPricesList = items.map((item) => item.discountedPrice);
+      // const itemPricesList = items.map((item) => item.discountedPrice);
 
-      const priceTotal = itemPricesList.reduce(
-        (item, currentTotal) => item + currentTotal,
-        0
-      );
-
+      // const priceTotal = itemPricesList.reduce(
+      //   (item, currentTotal) => item + currentTotal,
+      //   0
+      // );
+      
+      
+      items.forEach(item => {
+        console.log(item.discountedPrice);
+      console.log(item.quantity);
+        const price = item.discountedPrice * item.quantity;
+        priceTotal += price;
+      })
+        // console.log(items);
       // Clear the old total and insert the updated total
       const totalElement = document.querySelector(".cart-total");
       totalElement.innerHTML = `Total: $${priceTotal.toFixed(2)}`;
@@ -124,6 +144,7 @@ function addToCart(item) {
   const cartItems = getLocalStorage("so-cart") || [];
 
   // Check if the item is already in the cart
+  // console.log(cartItems);
   const existingItemIndex = cartItems.findIndex(
     (cartItem) => cartItem.id === item.id
   );
@@ -163,6 +184,6 @@ function attachQuantityChangeListeners() {
 
 renderCartContents();
 checkCartItems();
-addToCart();
+// addToCart();
 
 loadHeaderFooter();
