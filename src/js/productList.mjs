@@ -2,6 +2,9 @@ import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate, listSort, sortProduct, searchResults } from "./utils.mjs";
 
 function productCardTemplate(product) {
+  let colorOptionsHtml = product.Colors.map(color => 
+    `<div class="color-option" data-color-name="${color.Name}" style="background-image: url('${color.SwatchImage}');"></div>`
+  ).join('');
     return `<li class="product-card">
     <a href="../product_pages/index.html?product=${product.Id}">
       <picture>
