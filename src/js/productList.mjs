@@ -66,3 +66,64 @@ export function createBreadcrumbs(breadcrumbsArray) {
   });
 //  sortProduct(productCardTemplate, selector, Allproducts, "afterbegin", false);
 }
+
+function openQuickView(product) {
+  
+  const modal = document.getElementById('quick-view-modal');
+  console.log(modal.querySelector('.product_name'));
+  modal.querySelector('.product_name').textContent = product.NameWithoutBrand;
+  modal.querySelector('.product_brand').textContent = product.Brand.Name;
+  let colorOptionsHtml = product.Colors.map(color => 
+    `<div class="color-option" data-color-name="${color.Name}" style="background-image: url('${color.SwatchImage}');"></div>`
+  ).join('');
+
+  modal.querySelector('.color-options').innerHTML = colorOptionsHtml;
+  modal.style.display = 'block';
+  
+
+}
+function closeQuickView() {
+  const modal = document.getElementById('quick-view-modal');
+  modal.style.display = 'none';
+}
+
+// Close the modal when clicking outside the modal content
+window.addEventListener("click", (event) => {
+  const modal = document.getElementById('quick-view-modal');
+  if (event.target === modal) {
+      modal.style.display = "none"; // Hide the modal
+  }
+});
+// Close the modal using the close button
+document.addEventListener("DOMContentLoaded", () => {
+  const closeModalButton = document.querySelector(".close-modal-button");
+  if(closeModalButton){
+    closeModalButton.addEventListener("click", closeQuickView);
+  }
+  
+});
+function attachQuickViewEventListeners(Allproducts) {
+  const quickViewButtons = document.querySelectorAll(".quick-view-button");
+  quickViewButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // console.log('quick view btn');
+          const productId = btn.getAttribute('data-product-id');
+          // console.log(productId);
+          const product = Allproducts.find(p => p.Id === productId);
+          // console.log(product);
+          if (product) {
+              openQuickView(product);
+          }
+      });
+  });
+}
+
+function attachColorOptionListeners() {
+  const colorOptions = document.querySelectorAll('.color-option');
+  colorOptions.forEach(option => {
+    option.addEventListener('click', (event) => {
+      const selectedColor = event.target.dataset.colorName;
+      
+    });
+  });
+}

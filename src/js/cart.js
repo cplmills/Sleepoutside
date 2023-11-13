@@ -21,6 +21,7 @@ function renderCartContents() {
     });
     // Update the total price
     showTotalContents(cartItems);
+    attachQuantityChangeListeners();
   }
 }
 
@@ -51,6 +52,8 @@ function cartItemTemplate(item, index) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${discountedPrice.toFixed(2)}</p>
+  <input type="number" class="cart-card__quantity" data-index="${index}" value="${item.quantity}" min="1">
+            <p class="cart-card__price">$${(item.discountedPrice * item.quantity).toFixed(2)}</p>
 </li>`;
 
   return newItem;
@@ -108,6 +111,14 @@ function showTotalContents(items) {
     }
   }
 }
+function updateCartItemQuantity(index, newQuantity) {
+  const cartItems = getLocalStorage("so-cart");
+  if (index >= 0 && index < cartItems.length) {
+      cartItems[index].quantity = newQuantity;
+      setLocalStorage("so-cart", cartItems);
+      renderCartContents(); // Re-render the cart to update the display
+  }
+}
 function addToCart(item) {
   // Retrieve the current cart from local storage
   const cartItems = getLocalStorage("so-cart") || [];
@@ -139,7 +150,19 @@ function checkCartItems() {
     showTotalContents(cartItems);
   }
 }
+function attachQuantityChangeListeners() {
+  const quantityInputs = document.querySelectorAll(".cart-card__quantity");
+  quantityInputs.forEach(input => {
+      input.addEventListener('change', (event) => {
+          const index = parseInt(event.target.dataset.index, 10);
+          const newQuantity = parseInt(event.target.value, 10);
+          updateCartItemQuantity(index, newQuantity);
+      });
+  });
+}
 
 renderCartContents();
 checkCartItems();
+addToCart();
+
 loadHeaderFooter();
