@@ -13,10 +13,10 @@ function convertToJson(res) {
 
 export async function getProductsByCategory(category) {
   if (sessionStorage.getItem('userSearch') === 'true') {
-    let tents_request = await fetch(baseURL + `/products/search/tents`);
-    let sleeping_bags_request = await fetch(baseURL + `/products/search/sleeping-bags`);
-    let backpacks_request = await fetch(baseURL + `/products/search/backpacks`);
-    let hammocks_request = await fetch(baseURL + `/products/search/hammocks`);
+    let tents_request = await fetch(baseURL + `products/search/tents`);
+    let sleeping_bags_request = await fetch(baseURL + `products/search/sleeping-bags`);
+    let backpacks_request = await fetch(baseURL + `products/search/backpacks`);
+    let hammocks_request = await fetch(baseURL + `products/search/hammocks`);
 
     let tents = await convertToJson(tents_request);
     let sleeping_bags = await convertToJson(sleeping_bags_request);
