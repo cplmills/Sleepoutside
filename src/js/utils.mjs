@@ -75,8 +75,10 @@ export async function loadHeaderFooter(){
 }
 
 export function showCartCount(){
-  let badge = document.querySelector(".cart-item-count");
-  badge.innerHTML = getLocalStorage("so-cart").length;
+  if (getLocalStorage("so-cart")) {
+    let badge = document.querySelector(".cart-item-count");
+    badge.innerHTML = getLocalStorage("so-cart").length;
+  }
 }
 
 
@@ -134,13 +136,14 @@ export function listSort(list){
     });
   }
 
-  // export function newsLetter() {
-  //   let closeBtn = document.querySelector('#close');
-  //   closeBtn.addEventListener('click', () => {
-  //     let newslettercontainer = document.querySelector('.news-letter-container')
-  //     newslettercontainer.style.opacity = "0%";
-  //   })
-  // }
+  export function newsLetter() {
+    let closeBtn = document.querySelector('#close');
+    closeBtn.addEventListener('click', () => {
+      let newslettercontainer = document.querySelector('.news-letter-container')
+      newslettercontainer.style.opacity = "0%";
+    })
+  }
+
 
   export function alertMessage(message, scroll = true) {
     // create element to hold our alert
@@ -213,27 +216,31 @@ function totitleCase(str){
     return match.toUpperCase();
   });
 }
+
 async function giveawayMessage(){
-    const giveaway = document.querySelector('.giveaway-container');
-    const giveawayTemplateFn = loadTemplate("/partials/giveaway.html");
-    const giveawayContainer = document.querySelector('.giveaway-container');
+  const giveawayContainer = document.querySelector('.giveaway-container');
+  const visitNumber = localStorage.getItem('visitTrack');
+  const giveaway = document.querySelector('.giveaway-container');
+  const giveawayTemplateFn = loadTemplate("/partials/giveaway.html");
+  if(giveawayContainer) {
+    if (!localStorage.getItem('visitTrack')) {  
 
-    giveaway.innerHTML = await giveawayTemplateFn();
+      giveaway.innerHTML = await giveawayTemplateFn();
 
-    const closeGiveaway = document.querySelector('#giveaway-close');
+      const closeGiveaway = document.querySelector('#giveaway-close');
   
-  closeGiveaway.addEventListener('click', () => {
-    giveawayContainer.style.opacity = "0%";
-    giveawayContainer.style.pointerEvents = "none";
+      closeGiveaway.addEventListener('click', () => {
+      giveawayContainer.style.opacity = "0%";
+      giveawayContainer.style.pointerEvents = "none";
+      localStorage.setItem('visitTrack', 1);
   });
-  if (localStorage.getItem('visitTrack')){
-    let visitNumber = localStorage.getItem('visitTrack');
-    localStorage.setItem('visitTrack', (parseFloat(visitNumber) + 1));
-    giveawayContainer.style.display = "none";
-  } else {
-    localStorage.setItem('visitTrack', 1);
+    } else {
+      localStorage.setItem('visitTrack', (parseFloat(visitNumber) + 1));
+      giveawayContainer.style.opacity = "0%";
+      giveawayContainer.style.pointerEvents = "none";
+    }
   }
- }
+}
 
   
 
