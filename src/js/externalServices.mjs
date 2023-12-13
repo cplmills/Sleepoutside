@@ -60,7 +60,6 @@ export async function checkout(payload) {
 }
 
 export async function loginRequest(creds){
-  console.log(creds);
   const options = {
     method: "POST",
     headers: {

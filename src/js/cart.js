@@ -108,30 +108,30 @@ function showTotalContents(items) {
     }
   }
 }
-function addToCart(item) {
-  // Retrieve the current cart from local storage
-  const cartItems = getLocalStorage("so-cart") || [];
+// function addToCart(item) {
+//   // Retrieve the current cart from local storage
+//   const cartItems = getLocalStorage("so-cart") || [];
 
-  // Check if the item is already in the cart
-  const existingItemIndex = cartItems.findIndex(
-    (cartItem) => cartItem.id === item.id
-  );
+//   // Check if the item is already in the cart
+//   const existingItemIndex = cartItems.findIndex(
+//     (cartItem) => cartItem.id === item.id
+//   );
 
-  if (existingItemIndex !== -1) {
-    // If the item is already in the cart, increment its quantity
-    cartItems[existingItemIndex].quantity += 1;
-  } else {
-    // If the item is not in the cart, add it with a quantity of 1
-    item.quantity = 1;
-    cartItems.push(item);
-  }
+//   if (existingItemIndex !== -1) {
+//     // If the item is already in the cart, increment its quantity
+//     cartItems[existingItemIndex].quantity += 1;
+//   } else {
+//     // If the item is not in the cart, add it with a quantity of 1
+//     item.quantity = 1;
+//     cartItems.push(item);
+//   }
 
-  // Update the cart in local storage
-  setLocalStorage("so-cart", cartItems);
-  renderCartContents();
-  checkCartItems();
-  loadHeaderFooter();
-}
+//   // Update the cart in local storage
+//   setLocalStorage("so-cart", cartItems);
+//   renderCartContents();
+//   checkCartItems();
+//   loadHeaderFooter();
+// }
 
 function checkCartItems() {
   const cartItems = getLocalStorage("so-cart");

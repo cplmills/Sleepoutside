@@ -50,7 +50,6 @@ const checkoutProcess = {
     const itemNumElement = document.querySelector(
       this.outputSelector + " #num-items"
     );
-    console.log(itemNumElement);
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
@@ -85,10 +84,8 @@ const checkoutProcess = {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
     try {
       const res = await checkout(json);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }

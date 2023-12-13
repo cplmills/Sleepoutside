@@ -1,12 +1,12 @@
 import { createBreadcrumbs } from "./productList.mjs";
-import { getLocalStorage, getParam } from "./utils.mjs";
+import { getParam } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
 import { findCategoryById } from "./externalServices.mjs";
 
 const productId = getParam("product");
 productDetails(productId);
 
-let thisCategory = findCategoryById(productId).then((result) => {
+findCategoryById(productId).then((result) => {
   let categoryName = result;
   createBreadcrumbs([
     ["Home", "../index.html"],
